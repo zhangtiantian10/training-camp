@@ -6,7 +6,10 @@ function getHello(res) {
             console.log(err);
         } else {
             console.log(result);
-            res.json(result[0].h);
+            if (result.length === 0) {
+                res.json('');
+            } else
+                res.json(result[0].h);
         }
     });
 }
