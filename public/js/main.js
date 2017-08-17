@@ -4,8 +4,8 @@ import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers/index';
-import Student from './containers/addStudent';
-import studentMiddleware from './middlewares/addStudent';
+import Student from './containers/student_container';
+import studentMiddleware from './middlewares/student_middleware';
 
 
 const createStoreWithMiddleware = applyMiddleware(studentMiddleware)(createStore);

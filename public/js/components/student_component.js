@@ -17,6 +17,16 @@ export default class Hello extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        var isSaved = this.props.isSaved;
+        if (isSaved) {
+            alert("添加成功");
+        } else {
+            alert("添加失败");
+        }
+    }
+
+
     render () {
         return <div>
            <div>
