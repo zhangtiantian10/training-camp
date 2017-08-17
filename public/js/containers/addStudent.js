@@ -3,14 +3,14 @@ import Hello from '../components/addStudent';
 
 const mapStateToProps = (state) => {
     return {
-        content: state.hello.content
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getHello: () => {
-            dispatch({type: 'GET_CONTENT'});
+        onSubmit: (data) => {
+            console.log(data);
+            dispatch({type:"ADD_STUDENT",data});
         }
     }
 };
