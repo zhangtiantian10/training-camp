@@ -2,7 +2,9 @@ import {connect} from 'react-redux';
 import Hello from '../components/addStudent';
 
 const mapStateToProps = (state) => {
+    console.log("state",state);
     return {
+        isSaved:state.student.isSaved
     }
 };
 
