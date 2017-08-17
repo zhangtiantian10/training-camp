@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const PORT = 3000;
 const app = express();
-const createDatabase = require('./server/dbs/create-database');
-createDatabase();
 const bodyParser = require('body-parser');
 
+
 const student = require('./server/routers/student');
+const week = require('./server/routers/week');
 
 
 app.use(express.static(__dirname + '/public'));
@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 app.use('/', student);
+app.use('/', week);
 
 
 app.get("*", function (req, res) {

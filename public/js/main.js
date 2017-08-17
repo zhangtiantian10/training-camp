@@ -8,12 +8,18 @@ import Student from './containers/student_container';
 import studentMiddleware from './middlewares/student_middleware';
 
 
-const createStoreWithMiddleware = applyMiddleware(studentMiddleware)(createStore);
+import Week from './containers/Week';
+
+
+import weekMiddle from './middlewares/week';
+
+const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle)(createStore);
 
 const store = createStoreWithMiddleware(reducers);
 
 render(<Provider store={store}>
     <Router history={browserHistory}>
         <Route path="/" component={Student}/>
+        <Route path="/week" component={Week}/>
     </Router>
 </Provider>, document.getElementById("content"));
