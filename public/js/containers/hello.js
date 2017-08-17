@@ -1,4 +1,18 @@
 import {connect} from 'react-redux';
 import Hello from '../components/hello';
 
-export default connect()(Hello);
+const mapStateToProps = (state) => {
+    return {
+        content: state.hello.content
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getHello: () => {
+            dispatch({type: 'GET_CONTENT'});
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hello);
