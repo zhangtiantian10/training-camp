@@ -7,7 +7,7 @@ import reducers from './reducers/index';
 
 import Hello from './containers/addStudent';
 
-import helloMiddle from './middlewares/hello';
+import helloMiddle from './middlewares/addStudent';
 
 const createStoreWithMiddleware = applyMiddleware(helloMiddle)(createStore);
 
