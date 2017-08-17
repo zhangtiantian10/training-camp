@@ -1,21 +1,23 @@
-function getHello(res) {
-    const connection = require('./connection');
 
-    connection.query("select * from hello", (err, result) => {
+
+function insertStudent(studentInformation,res) {
+    const connection = require('./connection');
+    console.log("info",studentInformation);
+    let addSql='INSERT INTO student(name,school,city,team,major,gender,grade,zone)VALUES(?,?,?,?,?,?,?,?)';
+    connection.query(addSql, studentInformation,(err, result) => {
         if (err) {
-            console.log(err);
+           console.log(err);
         } else {
             console.log(result);
             if (result.length === 0) {
-                res.json('');
+                res.json({isSaved:false});
             } else
-                res.json(result[0].h);
+                res.json({isSaved:true});
         }
     });
 }
 
 
-
 module.exports = {
-    getHello,
+    insertStudent,
 };

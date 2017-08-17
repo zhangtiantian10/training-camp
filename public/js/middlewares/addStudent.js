@@ -15,6 +15,7 @@ export default store => next => action => {
                 zone:action.data.zone
             })
             .end((err, res) => {
+                console.log(res.body.isSaved);
                 next({type:"ADD_STUDENT", data: res.body});
             });
     }
