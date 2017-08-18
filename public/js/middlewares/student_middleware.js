@@ -34,7 +34,7 @@ export default store => next => action => {
         request.post('/searchOne')
             .send({search_id:action.data})
             .end((err,res)=>{
-                next({type:"SEARCH_ONE"})
+                next({type:"SEARCH_ONE",oneStudent:res.body.oneStudent})
             })
     }
     else
