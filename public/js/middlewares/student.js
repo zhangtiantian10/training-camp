@@ -40,7 +40,7 @@ export default store => next => action => {
         request.post('/modifyStudent')
             .send({information:action.data})
             .end((err,res)=>{
-                next({type:"MODIFY_STUDENT"})
+                next({type:"MODIFY_STUDENT",isModify:res.body.isModify})
             })
     }
     else

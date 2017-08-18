@@ -63,11 +63,7 @@ function modifyStudent(information, res) {
         if (err) {
             console.log(err);
         } else {
-            if(result.length === 0){
-                res.json({isModify:false});
-            }else{
                 res.json({isModify:true});
-            }
         }
     });
 }
