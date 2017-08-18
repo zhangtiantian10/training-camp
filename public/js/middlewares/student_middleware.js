@@ -30,6 +30,12 @@ export default store => next => action => {
                 console.log(res.body.isRemoved);
                 next({type:"REMOVE_STUDENT",isRemoved:res.body.isRemoved});
             })
+    }else if(action.type === "SEARCH_ONE"){
+        request.post('/searchOne')
+            .send({search_id:action.data})
+            .end((err,res)=>{
+                next({type:"SEARCH_ONE"})
+            })
     }
     else
         next(action);
