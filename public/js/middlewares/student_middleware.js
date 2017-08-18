@@ -17,6 +17,11 @@ export default store => next => action => {
             .end((err, res) => {
                 next({type:"ADD_STUDENT", data: res.body.isSaved});
             });
+    }else if(action.type === "GETALL_STUDENT"){
+     request.post('/getAllStudent')
+         .end((err,res)=>{
+             next({type:"GETALL_STUDENT",data:res.body});
+         })
     }
     else
         next(action);
