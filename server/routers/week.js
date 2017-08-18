@@ -11,4 +11,8 @@ router.get('/weeks', (req, res) => {
     Dao.getAllWeeks(res);
 });
 
+router.post('/modifyWeek', (req, res) => {
+    Dao.modifyWeek(res, req.body);
+})
+
 module.exports = router;
