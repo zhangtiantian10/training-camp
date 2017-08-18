@@ -60,7 +60,7 @@ export default class Week extends React.Component{
         console.log(this.props.modifySuccess);
         return <div>
             <Nav/>
-            <form className="col-md-11 col-md-offset-1 form-inline tablePaddingTop">
+            <form className="col-md-12 form-inline tablePaddingTop">
                 <div className="form-group">
                     <label>第几周</label>
                     <input type="text" className="form-control" ref="weekCode" placeholder="第一周"/>
