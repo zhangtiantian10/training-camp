@@ -24,11 +24,7 @@ function getAllStudent(res){
         if (err) {
             console.log(err);
         } else {
-            console.log(result);
-            if (result.length === 0) {
-                res.json({getAll:''});
-            } else
-                res.json({getAll:result});
+            res.json({getAll: result});
         }
     });
 }
