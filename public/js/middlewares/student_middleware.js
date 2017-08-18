@@ -20,7 +20,8 @@ export default store => next => action => {
     }else if(action.type === "GETALL_STUDENT"){
      request.post('/getAllStudent')
          .end((err,res)=>{
-             next({type:"GETALL_STUDENT",data:res.body});
+             console.log(res.body.getAll);
+             next({type:"GETALL_STUDENT",data:res.body.getAll});
          })
     }
     else
