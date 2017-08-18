@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
     return {
         isSaved:state.student.isSaved,
         allStudent:state.student.allStudent,
-        isRemoved:state.student.isRemoved
+        isRemoved:state.student.isRemoved,
     }
 };
 
@@ -20,6 +20,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         onRemove:(data)=>{
          dispatch({type:"REMOVE_STUDENT",data});
+        },
+        onSearch:(data)=>{
+            console.log(data);
+            dispatch({type:"SEARCH_ONE",data});
         }
     }
 };
