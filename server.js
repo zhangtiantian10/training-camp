@@ -24,7 +24,6 @@ app.use('/',taskcard);
 app.use('/',getAllTaskcard);
 app.use('/', weekScore);
 
-
 app.get("*", function (req, res) {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });

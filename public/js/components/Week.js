@@ -1,4 +1,5 @@
 import React from 'react';
+import Nav from '../containers/nav';
 
 export default class Week extends React.Component{
     constructor(props) {
@@ -58,7 +59,8 @@ export default class Week extends React.Component{
     render() {
         console.log(this.props.modifySuccess);
         return <div>
-            <form className="col-md-9 col-md-offset-1 form-inline tablePaddingTop">
+            <Nav/>
+            <form className="col-md-12 form-inline tablePaddingTop">
                 <div className="form-group">
                     <label>第几周</label>
                     <input type="text" className="form-control" ref="weekCode" placeholder="第一周"/>

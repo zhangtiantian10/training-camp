@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import student from './student-reducer'
+import student from './student'
 import week from './week';
 import taskcard from './taskcard';
 import getAllTaskcard from './getAllTaskcard';
