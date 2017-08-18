@@ -36,6 +36,12 @@ export default store => next => action => {
             .end((err,res)=>{
                 next({type:"SEARCH_ONE",oneStudent:res.body.oneStudent})
             })
+    }else if(action.type === "MODIFY_STUDENT"){
+        request.post('/modifyStudent')
+            .send({information:action.data})
+            .end((err,res)=>{
+                next({type:"MODIFY_STUDENT"})
+            })
     }
     else
         next(action);

@@ -10,8 +10,8 @@ class Student extends Component {
             this.props.getAllStudent();
             return 0;
         }
-        var isRemoved=this.props.isRemoved;
-        if(isRemoved){
+        var isRemoved = this.props.isRemoved;
+        if (isRemoved) {
             this.props.getAllStudent();
         }
     }
@@ -47,17 +47,17 @@ class Student extends Component {
     }
 
 
-    onRemove(id){
-        console.log("id",id);
+    onRemove(id) {
+        console.log("id", id);
         this.props.onRemove(id);
     }
 
-    onSearch(){
-        const student_id=document.getElementById("student_id").value;
+    onSearch() {
+        const student_id = document.getElementById("student_id").value;
         this.props.onSearch(student_id);
     }
 
-    insertValue(information){
+    insertValue(information) {
         console.log(information);
         document.getElementById("modify_id").value = information.id;
         document.getElementById("modify_name").value = information.name;
@@ -70,8 +70,8 @@ class Student extends Component {
         document.getElementById("modify_gender").value = information.gender;
     }
 
-    onModify(){
-        let id= document.getElementById("modify_id").value;
+    onModify() {
+        let id = document.getElementById("modify_id").value;
         let name = document.getElementById("modify_name").value;
         let zone = document.getElementById("modify_zone").value;
         let group = document.getElementById("modify_team").value;
@@ -83,16 +83,17 @@ class Student extends Component {
         if (name == "" || zone == "" || group == "" || city == "" || school == "" || major == "" || grade == "" || gender == "") {
             alert("请补全信息");
         } else {
-            this.props.onModify({id,name, zone, group, city, school, major, grade, gender});
+            this.props.onModify({id, name, zone, group, city, school, major, grade, gender});
         }
-        document.getElementById("name                                                                ").value = "";
-        document.getElementById("zone").value = "";
-        document.getElementById("team").value = "";
-        document.getElementById("city").value = "";
-        document.getElementById("school").value = "";
-        document.getElementById("major").value = "";
-        document.getElementById("grade").value = "";
-        document.getElementById("gender").value = "";
+        document.getElementById("modify_id").value = "";
+        document.getElementById("modify_name").value = "";
+        document.getElementById("modify_zone").value = "";
+        document.getElementById("modify_team").value = "";
+        document.getElementById("modify_city").value = "";
+        document.getElementById("modify_school").value = "";
+        document.getElementById("modify_major").value = "";
+        document.getElementById("modify_grade").value = "";
+        document.getElementById("modify_gender").value = "";
     }
 
     render() {
@@ -138,10 +139,15 @@ class Student extends Component {
                                 <td className="textStyle">{element.major}</td>
                                 <td className="textStyle">{element.grade}</td>
                                 <td className="textStyle">{element.gender}</td>
-                                <td><button type="button" className="btn btn-default"
-                                            data-toggle="modal" data-target="#secondModal" onClick={this.insertValue.bind(this,element)}>修改</button></td>
                                 <td>
-                                    <button type="button" className="btn btn-default" onClick={this.onRemove.bind(this,element.id)}>
+                                    <button type="button" className="btn btn-default"
+                                            data-toggle="modal" data-target="#secondModal"
+                                            onClick={this.insertValue.bind(this, element)}>修改
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" className="btn btn-default"
+                                            onClick={this.onRemove.bind(this, element.id)}>
                                         删除
                                     </button>
                                 </td>
