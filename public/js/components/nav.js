@@ -7,10 +7,13 @@ export default class Nav extends React.Component{
         browserHistory.push('/');
     }
     week(){
-        browserHistory.push('/week')
+        browserHistory.push('/week');
     }
     taskcard(){
-        browserHistory.push('/taskcard')
+        browserHistory.push('/taskcard');
+    }
+    weekScore() {
+        browserHistory.push('/weekScore');
     }
     render(){
         return <div>
@@ -20,7 +23,7 @@ export default class Nav extends React.Component{
             <ul className="nav">
                 <li><span className="colorA" onClick={this.student.bind(this)}>学生信息管理</span></li>
                 <li><span className="colorA" onClick={this.week.bind(this)}>周表管理</span></li>
-                <li><span className="colorA">周成绩管理</span></li>
+                <li><span className="colorA" onClick={this.weekScore.bind(this)}>周成绩管理</span></li>
                 <li><span className="colorA" onClick={this.taskcard.bind(this)}>任务卡管理</span></li>
                 <li><span className="colorA">积分榜管理</span></li>
                 <li><span className="colorA">助教管理</span></li>

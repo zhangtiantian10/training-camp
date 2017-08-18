@@ -2,3 +2,14 @@
     padding-top: 30px;
     text-align: center;
 }
+
+.cancelTdPadding {
+    padding: 0px !important;
+}
+
+.cancelBorder {
+    border: 0px !important;
+    border-radius: 0px !important;
+    font-size: 120% !important;
+    padding: 0px;
+}
