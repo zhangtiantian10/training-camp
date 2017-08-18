@@ -7,6 +7,7 @@ class Student extends Component {
         var isSaved = this.props.isSaved;
         if (isSaved) {
             this.props.getAllStudent();
+            return 0;
         }
     }
 
@@ -16,7 +17,6 @@ class Student extends Component {
     }
 
     onSubmit() {
-        console.log("lalallaal");
         let name = document.getElementById("name").value;
         let zone = document.getElementById("zone").value;
         let group = document.getElementById("team").value;
@@ -41,6 +41,12 @@ class Student extends Component {
 
     }
 
+
+    onRemove(id){
+        console.log("id",id);
+        this.props.onRemove(id);
+    }
+
     render() {
         return <div>
             <div className="position">
@@ -60,6 +66,7 @@ class Student extends Component {
                 <table className="table table-bordered textStyle">
                     <tbody className="tableStyle">
                     <tr className="active">
+                        <th className="textStyle">ID</th>
                         <th className="textStyle">姓名</th>
                         <th className="textStyle">战区</th>
                         <th className="textStyle">组号</th>
@@ -73,6 +80,7 @@ class Student extends Component {
                     {
                         this.props.allStudent.map((element)=> {
                             return <tr>
+                                <td className="textStyle">{element.id}</td>
                                 <td className="textStyle">{element.name}</td>
                                 <td className="textStyle">{element.zone}</td>
                                 <td className="textStyle">{element.team}</td>
@@ -84,7 +92,7 @@ class Student extends Component {
                                 <td><input type="button" value="修改"
                                            className="btn btn-default"/></td>
                                 <td>
-                                    <button type="button" className="btn btn-default">
+                                    <button type="button" className="btn btn-default" onClick={this.onRemove.bind(this,element.id)}>
                                         删除
                                     </button>
                                 </td>
