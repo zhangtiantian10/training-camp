@@ -12,6 +12,34 @@ function addWeek(res, data) {
     });
 }
 
+function getAllWeeks(res) {
+    const connection = require('./connection');
+
+    const selectString = `select * from week_detail`;
+    connection.query(selectString, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    })
+}
+
+function modifyWeek(res, week) {
+    const connection = require('./connection');
+
+    const updateString = `update week_detail set week_code='${week.weekCode}', start_date='${week.startDate}', end_date='${week.endDate}', card_number=${week.cardNumber} where id=${week.id}`;
+    connection.query(updateString, (err, result) => {
+        if(err) {
+            res.json(false);
+        } else {
+            res.json(true);
+        }
+    })
+}
+
 module.exports = {
-    addWeek
+    addWeek,
+    getAllWeeks,
+    modifyWeek
 };
