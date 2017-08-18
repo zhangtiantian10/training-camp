@@ -59,6 +59,7 @@ class Student extends Component {
 
     insertValue(information){
         console.log(information);
+        document.getElementById("modify_id").value = information.id;
         document.getElementById("modify_name").value = information.name;
         document.getElementById("modify_zone").value = information.zone;
         document.getElementById("modify_team").value = information.team;
@@ -84,7 +85,7 @@ class Student extends Component {
         } else {
             this.props.onModify({id,name, zone, group, city, school, major, grade, gender});
         }
-        document.getElementById("name").value = "";
+        document.getElementById("name                                                                ").value = "";
         document.getElementById("zone").value = "";
         document.getElementById("team").value = "";
         document.getElementById("city").value = "";
@@ -210,7 +211,7 @@ class Student extends Component {
                         <div className="modal-body">
                             <form className="form-inline">
                                 <div className="inputPosition">
-                                    <label>I D：</label>
+                                    <label> I D：</label>
                                     <input type="text" className="btn btn-default" id="modify_id"/>
                                 </div>
                                 <div className="inputPosition">

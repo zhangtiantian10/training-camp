@@ -22,8 +22,10 @@ const mapDispatchToProps = (dispatch) => {
          dispatch({type:"REMOVE_STUDENT",data});
         },
         onSearch:(data)=>{
-            console.log(data);
             dispatch({type:"SEARCH_ONE",data});
+        },
+        onModify:(data)=>{
+            dispatch({type:"MODIFY_STUDENT",data});
         }
     }
 };
