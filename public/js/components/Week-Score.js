@@ -1,4 +1,5 @@
 import React from 'react';
+import Nav from '../containers/nav';
 
 export default class WeekScore extends React.Component {
 
@@ -17,6 +18,7 @@ export default class WeekScore extends React.Component {
 
     render() {
         return <div>
+            <Nav/>
             <div className="col-md-offset-2 tablePaddingTop">
                 <div className="col-md-2">
                     <select className="form-control textStyle" id="zone">
