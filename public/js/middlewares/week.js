@@ -16,7 +16,6 @@ export default store => next => action => {
                     next({type: 'ALL_WEEKS', weeks: res.body});
             });
     } else if (action.type === 'MODIFY_WEEK') {
-        console.log(action.data)
         request.post('/modifyWeek')
             .send(action.data)
             .end((err, res) => {

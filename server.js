@@ -9,6 +9,7 @@ const student = require('./server/routers/student');
 const week = require('./server/routers/week');
 const taskcard = require('./server/routers/addTaskcard');
 const getAllTaskcard = require('./server/routers/getAllTaskcard');
+const weekScore = require('./server/routers/week-score');
 
 
 app.use(express.static(__dirname + '/public'));
@@ -21,6 +22,7 @@ app.use('/', student);
 app.use('/', week);
 app.use('/',taskcard);
 app.use('/',getAllTaskcard);
+app.use('/', weekScore);
 
 
 app.get("*", function (req, res) {

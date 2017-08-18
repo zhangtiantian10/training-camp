@@ -11,11 +11,13 @@ import taskcardMiddleware from './middlewares/taskCard';
 import getAllTaskcardMiddleware from './middlewares/getAllTadkcard';
 
 import Week from './containers/Week';
+import WeekScore from './containers/Week-Score';
 
 
 import weekMiddle from './middlewares/week';
+import weekScoreMiddle from './middlewares/week-score';
 
-const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle,taskcardMiddleware,getAllTaskcardMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle, taskcardMiddleware, getAllTaskcardMiddleware, weekScoreMiddle)(createStore);
 
 const store = createStoreWithMiddleware(reducers);
 
@@ -24,5 +26,6 @@ render(<Provider store={store}>
         <Route path="/" component={Student}/>
         <Route path="/week" component={Week}/>
         <Route path="taskcard" component={TaskCard}/>
+        <Route path="/weekScore" component={WeekScore}/>
     </Router>
 </Provider>, document.getElementById("content"));
