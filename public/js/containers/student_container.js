@@ -10,6 +10,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getAllStudent:()=>{
+            console.log("run getAllStudent");
+            dispatch({type:"GETALL_STUDENT"});
+        },
         onSubmit: (data) => {
             console.log(data);
             dispatch({type:"ADD_STUDENT",data});

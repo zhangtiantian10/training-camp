@@ -26,6 +26,10 @@ export default class Hello extends React.Component {
         }
     }
 
+    componentWillMount(){
+        this.props.getAllStudent();
+    }
+
 
     render () {
         return <div>
@@ -55,11 +59,11 @@ export default class Hello extends React.Component {
                 <input type="text" id="major"/>
             </div>
             <div>
-                <label htmlFor="grade">年级</label>
+                <label htmlFor="grade">年级:</label>
                 <input type="text" id="grade"/>
             </div>
             <div>
-                <label htmlFor="gender">性别</label>
+                <label htmlFor="gender">性别:</label>
                 <input type="text" id="gender"/>
             </div>
             <div>
