@@ -6,7 +6,7 @@ export default class TaskCard extends React.Component{
         if(name === ''){
             alert("任务卡的名称不能为空");
         }else {
-            this.props.onAdd(name);
+            this.props.onAdd({name});
         }
     }
     render(){
