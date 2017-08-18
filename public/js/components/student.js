@@ -14,6 +14,11 @@ class Student extends Component {
         if (isRemoved) {
             this.props.getAllStudent();
         }
+
+        var isModify=this.props.isModify;
+        if(isModify){
+            this.props.getAllStudent();
+        }
     }
 
     componentWillMount() {
