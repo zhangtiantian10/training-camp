@@ -69,13 +69,13 @@ export default class WeekScore extends React.Component {
                     {this.props.students.map((s, i) => {
                         return <tr key={i}>
                             <td className="textStyle">{s.name}</td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
-                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder" value="0"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
+                            <td className="cancelTdPadding"><input type="text" className="form-control cancelBorder"/></td>
                         </tr>
                     })}
                     </tbody>
