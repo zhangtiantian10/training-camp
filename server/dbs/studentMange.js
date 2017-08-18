@@ -44,9 +44,22 @@ function removeStudent(id, res) {
     });
 }
 
+function searchOne(id, res) {
+    const connection = require('./connection');
+    const searchSql=`SELECT * FROM student WHERE id=${id}`;
+    connection.query(searchSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({oneStudent:result[0]});
+        }
+    });
+}
+
 
 module.exports = {
     insertStudent,
     getAllStudent,
-    removeStudent
+    removeStudent,
+    searchOne
 };
