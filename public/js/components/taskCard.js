@@ -17,6 +17,9 @@ export default class TaskCard extends React.Component{
             alert("添加失败");
         }
     }
+    componentWillMount(){
+        this.props.getAllTaskcard();
+    }
     render(){
         return <div className="position">
             <form className="form-inline">
