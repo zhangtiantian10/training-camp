@@ -51,16 +51,21 @@ class Student extends Component {
         this.props.onRemove(id);
     }
 
+    onSearch(){
+        const student_id=document.getElementById("student_id").value;
+        this.props.onSearch(student_id);
+    }
+
     render() {
         return <div>
             <div className="position">
                 <form className="form-inline">
                     <div className="form-group">
                         <div className="input-group">
-                            <input type="text" className="form-control"/>
+                            <input type="text" className="form-control" placeholder="输入学生ID" id="student_id"/>
                         </div>
                     </div>
-                    <button type="button" className="btn btn-info first">查找</button>
+                    <button type="button" className="btn btn-info first" onClick={this.onSearch.bind(this)}>查找</button>
                     <button type="button" className="btn btn-info first" data-toggle="modal" data-target="#firstModal">
                         添加
                     </button>
