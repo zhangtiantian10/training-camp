@@ -8,7 +8,7 @@ export default store => next => action => {
                 name: action.data.name,
                 school: action.data.school,
                 city: action.data.city,
-                group: action.data.group,
+                team:action.data.team,
                 major: action.data.major,
                 gender: action.data.gender,
                 grade: action.data.grade,
@@ -30,7 +30,7 @@ export default store => next => action => {
             })
     } else if (action.type === "SEARCH_ONE") {
         request.post('/searchOne')
-            .send({search_id: action.data})
+            .send({search_name: action.data})
             .end((err, res)=> {
                 next({type: "SEARCH_ONE", oneStudent: res.body.oneStudent})
             })

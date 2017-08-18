@@ -53,13 +53,12 @@ class Student extends Component {
 
 
     onRemove(id) {
-        console.log("id", id);
         this.props.onRemove(id);
     }
 
     onSearch() {
-        const student_id = document.getElementById("student_id").value;
-        this.props.onSearch(student_id);
+        const student_name = document.getElementById("student_name").value;
+        this.props.onSearch(student_name);
     }
 
     insertValue(information) {
@@ -108,7 +107,7 @@ class Student extends Component {
                 <form className="form-inline">
                     <div className="form-group">
                         <div className="input-group">
-                            <input type="text" className="form-control" placeholder="输入学生ID" id="student_id"/>
+                            <input type="text" className="form-control" placeholder="输入学生姓名" id="student_name"/>
                         </div>
                     </div>
                     <button type="button" className="btn btn-info first" onClick={this.onSearch.bind(this)}>查找</button>

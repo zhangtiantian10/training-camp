@@ -10,7 +10,6 @@ import studentMiddleware from './middlewares/student';
 import taskcardMiddleware from './middlewares/taskCard';
 import getAllTaskcardMiddleware from './middlewares/getAllTadkcard';
 import Nav from './containers/nav'
-
 import Week from './containers/Week';
 
 
