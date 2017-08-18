@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
         onSubmit: (data) => {
             dispatch({type:"ADD_STUDENT",data});
         },
-        onRemove:(id)=>{
-         dispatch({type:"REMOVE_STUDENT",id});
+        onRemove:(data)=>{
+         dispatch({type:"REMOVE_STUDENT",data});
         }
     }
 };

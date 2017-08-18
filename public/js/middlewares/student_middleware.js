@@ -23,6 +23,12 @@ export default store => next => action => {
              console.log(res.body.getAll);
              next({type:"GETALL_STUDENT",data:res.body.getAll});
          })
+    }else if(action.type === "REMOVE_STUDENT"){
+        request.post('/removeStudent')
+            .send({student_id:action.data})
+            .end((err,res)=>{
+                next({type:"REMOVE_STUDENT"});
+            })
     }
     else
         next(action);
