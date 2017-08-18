@@ -16,4 +16,8 @@ router.post('/getAllStudent',(req,res)=>{
     studentMange.getAllStudent(res)
 });
 
+router.post('/removeStudent',(req,res)=>{
+    console.log("req+++",req.body);
+});
+
 module.exports = router;
