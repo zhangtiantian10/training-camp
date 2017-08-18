@@ -11,4 +11,8 @@ router.post('/insertStudent', (req, res) => {
     studentMange.insertStudent(informationArray,res);
 });
 
+router.post('/getAllStudent',(req,res)=>{
+    console.log(req.body);
+});
+
 module.exports = router;
