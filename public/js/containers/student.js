@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
         isSaved:state.student.isSaved,
         allStudent:state.student.allStudent,
         isRemoved:state.student.isRemoved,
+        isModify:state.student.isModify
     }
 };
 
