@@ -48,7 +48,7 @@ export default class Week extends React.Component{
                     <label>任务卡数</label>
                     <input type="text" className="form-control" ref="cardNumber" placeholder="1"/>
                 </div>
-                <button className="btn btn-default">添加</button>
+                <button className="btn btn-default" onClick={this.addWeek.bind(this)}>添加</button>
             </form>
             <div className="col-md-8 col-md-offset-2 tablePaddingTop">
                 <table className="table table-hover">
@@ -71,7 +71,7 @@ export default class Week extends React.Component{
                                 {w.card_number}
                             </td>
                             <td>
-                                <button className="btn btn-default pull-center" onClick={this.modifyWeek.bind(this, w.id)}>修改</button>
+                                <button className="btn btn-default pull-center">修改</button>
                             </td>
                         </tr>
                     })}
