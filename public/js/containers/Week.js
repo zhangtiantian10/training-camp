@@ -3,7 +3,8 @@ import Week from '../components/Week';
 
 const mapStateToProps = (state) => {
     return {
-        addSuccess: state.week.addSuccess
+        addSuccess: state.week.addSuccess,
+        weeks: state.week.weeks
     };
 };
 
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onModifyAddSuccess: () => {
             dispatch({type: "MODIFY_ADD_SUCCESS"});
+        },
+        getAllWeeks: () => {
+            dispatch({type: "GET_ALL_WEEKS"});
         }
     }
 };

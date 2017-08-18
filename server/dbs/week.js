@@ -12,6 +12,20 @@ function addWeek(res, data) {
     });
 }
 
+function getAllWeeks(res) {
+    const connection = require('./connection');
+
+    const selectString = `select * from week_detail`;
+    connection.query(selectString, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    })
+}
+
 module.exports = {
-    addWeek
+    addWeek,
+    getAllWeeks
 };

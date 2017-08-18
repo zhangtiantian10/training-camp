@@ -7,4 +7,8 @@ router.post('/week', (req, res) => {
     console.log(req.body);
 });
 
+router.get('/weeks', (req, res) => {
+    Dao.getAllWeeks(res);
+});
+
 module.exports = router;

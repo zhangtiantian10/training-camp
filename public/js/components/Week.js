@@ -11,6 +11,10 @@ export default class Week extends React.Component{
         }
     }
 
+    componentDidMount() {
+        this.props.getAllWeeks();
+    }
+
     addWeek() {
         const weekCode = this.refs.weekCode.value;
         const startDate = this.refs.startDate.value;
@@ -25,16 +29,56 @@ export default class Week extends React.Component{
     }
 
     render() {
+        console.log(this.props.weeks);
         return <div>
-            <span>第几周</span>
-            <input type="text" ref="weekCode"/>
-            <span>开始时间</span>
-            <input type="date" ref="startDate"/>
-            <span>结束时间</span>
-            <input type="date" ref="endDate"/>
-            <span>任务卡数</span>
-            <input type="text" ref="cardNumber"/>
-            <button onClick={this.addWeek.bind(this)}>添加</button>
+            <form className="col-md-9 col-md-offset-1 form-inline tablePaddingTop">
+                <div className="form-group">
+                    <label>第几周</label>
+                    <input type="text" className="form-control" ref="weekCode" placeholder="第一周"/>
+                </div>
+                <div className="form-group">
+                    <label>开始时间</label>
+                    <input type="date" className="form-control" ref="startDate"/>
+                </div>
+                <div className="form-group">
+                    <label>结束时间</label>
+                    <input type="date" className="form-control" ref="endDate"/>
+                </div>
+                <div className="form-group">
+                    <label>任务卡数</label>
+                    <input type="text" className="form-control" ref="cardNumber" placeholder="1"/>
+                </div>
+                <button className="btn btn-default" onClick={this.addWeek.bind(this)}>添加</button>
+            </form>
+            <div className="col-md-8 col-md-offset-2 tablePaddingTop">
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>周名</th>
+                        <th>周名</th>
+                        <th>周名</th>
+                        <th>周名</th>
+                        <th>周名</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.props.weeks.map((w, i) => {
+                        return <tr key={i} id={`${w.id}`}>
+                            <td>{w.week_code}</td>
+                            <td>{w.start_date.split('T')[0]}</td>
+                            <td>{w.end_date.split('T')[0]}</td>
+                            <td>
+                                {w.card_number}
+                            </td>
+                            <td>
+                                <button className="btn btn-default pull-center">修改</button>
+                            </td>
+                        </tr>
+                    })}
+                    </tbody>
+                </table>
+
+            </div>
         </div>;
     }
 }
