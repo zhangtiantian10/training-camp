@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from '../containers/nav';
 
 export default class TaskCard extends React.Component{
     addTakcard(){
@@ -23,6 +24,7 @@ export default class TaskCard extends React.Component{
     }
     render(){
         return <div>
+            <Nav/>
             <div className="position">
                 <form className="form-inline">
                     <div className="form-group">
