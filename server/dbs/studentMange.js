@@ -55,11 +55,27 @@ function searchOne(id, res) {
         }
     });
 }
-
+function modifyStudent(information, res) {
+    const connection = require('./connection');
+    const modifySql=`UPDATE student SET name="${information.name}",zone="${information.zone}",team="${information.team}",city="${information.city}",school="${information.school}",major="${information.major}",
+    grade="${information.grade}",gender="${information.gender}" WHERE id=${information.id}`;
+    connection.query(modifySql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            if(result.length === 0){
+                res.json({isModify:false});
+            }else{
+                res.json({isModify:true});
+            }
+        }
+    });
+}
 
 module.exports = {
     insertStudent,
     getAllStudent,
     removeStudent,
-    searchOne
+    searchOne,
+    modifyStudent
 };

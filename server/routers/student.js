@@ -25,4 +25,9 @@ router.post('/searchOne',(req,res)=>{
     studentMange.searchOne(search_id,res);
 });
 
+router.post('/modifyStudent',(req,res)=>{
+    const information=req.body.information;
+    studentMange.modifyStudent(information,res);
+});
+
 module.exports = router;

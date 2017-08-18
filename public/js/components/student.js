@@ -24,16 +24,16 @@ class Student extends Component {
     onSubmit() {
         let name = document.getElementById("name").value;
         let zone = document.getElementById("zone").value;
-        let group = document.getElementById("team").value;
+        let team = document.getElementById("team").value;
         let city = document.getElementById("city").value;
         let school = document.getElementById("school").value;
         let major = document.getElementById("major").value;
         let grade = document.getElementById("grade").value;
         let gender = document.getElementById("gender").value;
-        if (name == "" || zone == "" || group == "" || city == "" || school == "" || major == "" || grade == "" || gender == "") {
+        if (name == "" || zone == "" || team == "" || city == "" || school == "" || major == "" || grade == "" || gender == "") {
             alert("请补全信息");
         } else {
-            this.props.onSubmit({name, zone, group, city, school, major, grade, gender});
+            this.props.onSubmit({name, zone, team, city, school, major, grade, gender});
         }
         document.getElementById("name").value = "";
         document.getElementById("zone").value = "";
@@ -74,16 +74,16 @@ class Student extends Component {
         let id = document.getElementById("modify_id").value;
         let name = document.getElementById("modify_name").value;
         let zone = document.getElementById("modify_zone").value;
-        let group = document.getElementById("modify_team").value;
+        let team = document.getElementById("modify_team").value;
         let city = document.getElementById("modify_city").value;
         let school = document.getElementById("modify_school").value;
         let major = document.getElementById("modify_major").value;
         let grade = document.getElementById("modify_grade").value;
         let gender = document.getElementById("modify_gender").value;
-        if (name == "" || zone == "" || group == "" || city == "" || school == "" || major == "" || grade == "" || gender == "") {
+        if (name == "" || zone == "" || team == "" || city == "" || school == "" || major == "" || grade == "" || gender == "") {
             alert("请补全信息");
         } else {
-            this.props.onModify({id, name, zone, group, city, school, major, grade, gender});
+            this.props.onModify({id, name, zone, team, city, school, major, grade, gender});
         }
         document.getElementById("modify_id").value = "";
         document.getElementById("modify_name").value = "";
