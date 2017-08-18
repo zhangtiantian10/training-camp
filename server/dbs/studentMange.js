@@ -8,7 +8,6 @@ function insertStudent(studentInformation,res) {
         if (err) {
            console.log(err);
         } else {
-            console.log(result);
             if (result.length === 0) {
                 res.json({isSaved:false});
             } else
@@ -17,7 +16,50 @@ function insertStudent(studentInformation,res) {
     });
 }
 
+function getAllStudent(res){
+    const connection = require('./connection');
+    const searchSql='select * from student';
+    connection.query(searchSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({getAll: result});
+        }
+    });
+}
+
+function removeStudent(id, res) {
+    const connection = require('./connection');
+    const removeSql=`DELETE FROM student where id=${id}`;
+    connection.query(removeSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            if(result.length === 0){
+                res.json({isRemoved:false});
+            }else{
+                res.json({isRemoved:true});
+            }
+        }
+    });
+}
+
+function searchOne(id, res) {
+    const connection = require('./connection');
+    const searchSql=`SELECT * FROM student WHERE id=${id}`;
+    connection.query(searchSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({oneStudent:result});
+        }
+    });
+}
+
 
 module.exports = {
     insertStudent,
+    getAllStudent,
+    removeStudent,
+    searchOne
 };

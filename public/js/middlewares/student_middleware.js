@@ -17,6 +17,25 @@ export default store => next => action => {
             .end((err, res) => {
                 next({type:"ADD_STUDENT", data: res.body.isSaved});
             });
+    }else if(action.type === "GETALL_STUDENT"){
+     request.post('/getAllStudent')
+         .end((err,res)=>{
+             console.log(res.body.getAll);
+             next({type:"GETALL_STUDENT",data:res.body.getAll});
+         })
+    }else if(action.type === "REMOVE_STUDENT"){
+        request.post('/removeStudent')
+            .send({student_id:action.data})
+            .end((err,res)=>{
+                console.log(res.body.isRemoved);
+                next({type:"REMOVE_STUDENT",isRemoved:res.body.isRemoved});
+            })
+    }else if(action.type === "SEARCH_ONE"){
+        request.post('/searchOne')
+            .send({search_id:action.data})
+            .end((err,res)=>{
+                next({type:"SEARCH_ONE",oneStudent:res.body.oneStudent})
+            })
     }
     else
         next(action);
