@@ -9,3 +9,13 @@
 .distance{
     margin-left: 10px;
 }
+
+.location{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.font{
+    font-weight: 800;
+    font-size: 16px;
+}

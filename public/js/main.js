@@ -8,13 +8,14 @@ import Student from './containers/student_container';
 import TaskCard from './containers/taskCard';
 import studentMiddleware from './middlewares/student_middleware';
 import taskcardMiddleware from './middlewares/taskCard';
+import getAllTaskcardMiddleware from './middlewares/getAllTadkcard';
 
 import Week from './containers/Week';
 
 
 import weekMiddle from './middlewares/week';
 
-const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle,taskcardMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle,taskcardMiddleware,getAllTaskcardMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(reducers);
 
