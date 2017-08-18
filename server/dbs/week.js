@@ -25,7 +25,21 @@ function getAllWeeks(res) {
     })
 }
 
+function modifyWeek(res, week) {
+    const connection = require('./connection');
+
+    const updateString = `update week_detail set week_code='${week.weekCode}', start_date='${week.startDate}', end_date='${week.endDate}', card_number=${week.cardNumber} where id=${week.id}`;
+    connection.query(updateString, (err, result) => {
+        if(err) {
+            res.json(false);
+        } else {
+            res.json(true);
+        }
+    })
+}
+
 module.exports = {
     addWeek,
-    getAllWeeks
+    getAllWeeks,
+    modifyWeek
 };
