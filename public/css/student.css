@@ -1,0 +1,84 @@
+* {
+    font-family: "AR PL UKai CN", "Noto Sans CJK JP Bold";
+}
+
+.headPosition{
+   margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.textStyle {
+    text-align: center;
+    font-size: 120%;
+}
+
+/*.infoButton{
+    background-color:  #d9edf7 !important;
+}
+
+.dangerButton{
+    background-color: #f2dede !important;
+}*/
+
+.tableStyle{
+    width:60%
+}
+
+.inputStyle{
+    height:45px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.myInput{
+    display: inline
+}
+
+.searchInput{
+    width:30px;
+    height:36px
+}
+
+.little{
+    margin-left: 5px !important;
+}
+
+.searchInput{
+    margin-bottom: 30px;
+}
+
+.textInput{
+    height:40px
+}
+
+.userInput{
+    height:45px !important;
+}
+
+.tablePosition{
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.inputPosition{
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
+
+.position{
+    text-align: center;
+}
+
+.submitPosition{
+    margin: 100px;
+}
+
+.first{
+    margin-left: 15px;
+}
+
+.position{
+    text-align: center;
+    margin-top: 50px;
+}
