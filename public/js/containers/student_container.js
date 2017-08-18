@@ -5,7 +5,7 @@ const mapStateToProps = (state) => {
     console.log("state",state);
     return {
         isSaved:state.student.isSaved,
-        allUser:state.student.allUser
+        allStudent:state.student.allStudent
     }
 };
 

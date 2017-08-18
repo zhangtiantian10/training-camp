@@ -19,6 +19,7 @@ export default class Hello extends React.Component {
 
     componentDidUpdate() {
         var isSaved = this.props.isSaved;
+        console.log("allUser",this.props.allStudent);
         if (isSaved) {
             alert("添加成功");
         } else {
