@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const student = require('./server/routers/student');
 const week = require('./server/routers/week');
 const taskcard = require('./server/routers/addTaskcard');
+const getAllTaskcard = require('./server/routers/getAllTaskcard');
 
 
 app.use(express.static(__dirname + '/public'));
@@ -19,6 +20,7 @@ app.use(express.static('./public'));
 app.use('/', student);
 app.use('/', week);
 app.use('/',taskcard);
+app.use('/',getAllTaskcard);
 
 
 app.get("*", function (req, res) {
