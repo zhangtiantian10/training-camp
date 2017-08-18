@@ -51,7 +51,7 @@ function searchOne(id, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json({oneStudent:result[0]});
+            res.json({oneStudent:result});
         }
     });
 }
