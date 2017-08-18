@@ -19,8 +19,8 @@ app.use(express.static('./public'));
 
 app.use('/', student);
 app.use('/', week);
-app.use('/',taskcard);
-app.use('/',getAllTaskcard);
+app.use('/', taskcard);
+app.use('/', getAllTaskcard);
 
 
 app.get("*", function (req, res) {

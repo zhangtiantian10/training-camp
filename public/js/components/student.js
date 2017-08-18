@@ -15,8 +15,8 @@ class Student extends Component {
             this.props.getAllStudent();
         }
 
-        var isModify=this.props.isModify;
-        if(isModify){
+        var isModify = this.props.isModify;
+        if (isModify) {
             this.props.getAllStudent();
         }
     }
@@ -172,35 +172,35 @@ class Student extends Component {
                             <form className="form-inline">
                                 <div className="inputPosition">
                                     <label>姓名：</label>
-                                    <input type="text" className="btn btn-default" id="name"/>
+                                    <input type="text" className="form-control" id="name"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>战区：</label>
-                                    <input type="text" className="btn btn-default" id="zone"/>
+                                    <input type="text" className="form-control" id="zone"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>组号：</label>
-                                    <input type="text" className="btn btn-default" id="team"/>
+                                    <input type="text" className="form-control" id="team"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>城市：</label>
-                                    <input type="text" className="btn btn-default" id="city"/>
+                                    <input type="text" className="form-control" id="city"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>学校：</label>
-                                    <input type="text" className="btn btn-default" id="school"/>
+                                    <input type="text" className="form-control" id="school"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>专业：</label>
-                                    <input type="text" className="btn btn-default" id="major"/>
+                                    <input type="text" className="form-control" id="major"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>年级：</label>
-                                    <input type="text" className="btn btn-default" id="grade"/>
+                                    <input type="text" className="form-control" id="grade"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>性别：</label>
-                                    <input type="text" className="btn btn-default" id="gender"/>
+                                    <input type="text" className="form-control" id="gender"/>
                                 </div>
                             </form>
                         </div>
@@ -223,39 +223,39 @@ class Student extends Component {
                             <form className="form-inline">
                                 <div className="inputPosition">
                                     <label> I D：</label>
-                                    <input type="text" className="btn btn-default" id="modify_id"/>
+                                    <input type="text" id="modify_id" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>姓名：</label>
-                                    <input type="text" className="btn btn-default" id="modify_name"/>
+                                    <input type="text" id="modify_name" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>战区：</label>
-                                    <input type="text" className="btn btn-default" id="modify_zone"/>
+                                    <input type="text" id="modify_zone" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>组号：</label>
-                                    <input type="text" className="btn btn-default" id="modify_team"/>
+                                    <input type="text" id="modify_team" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>城市：</label>
-                                    <input type="text" className="btn btn-default" id="modify_city"/>
+                                    <input type="text" id="modify_city" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>学校：</label>
-                                    <input type="text" className="btn btn-default" id="modify_school"/>
+                                    <input type="text" id="modify_school" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>专业：</label>
-                                    <input type="text" className="btn btn-default" id="modify_major"/>
+                                    <input type="text" id="modify_major" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>年级：</label>
-                                    <input type="text" className="btn btn-default" id="modify_grade"/>
+                                    <input type="text" id="modify_grade" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>性别：</label>
-                                    <input type="text" className="btn btn-default" id="modify_gender"/>
+                                    <input type="text" id="modify_gender" className="form-control"/>
                                 </div>
                             </form>
                         </div>
