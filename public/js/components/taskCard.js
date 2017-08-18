@@ -9,6 +9,14 @@ export default class TaskCard extends React.Component{
             this.props.onAdd({name});
         }
     }
+    componentWillUpdate(nextProps){
+        if(nextProps.addStatus === true){
+            alert("添加成功");
+            this.props.reset();
+        }else if(nextProps.addStatus === false){
+            alert("添加失败");
+        }
+    }
     render(){
         return <div className="position">
             <form className="form-inline">
