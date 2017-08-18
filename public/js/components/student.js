@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Nav from '../containers/nav';
 
 class Student extends Component {
 
@@ -59,7 +58,6 @@ class Student extends Component {
 
     render() {
         return <div>
-            <Nav/>
             <div className="position">
                 <form className="form-inline">
                     <div className="form-group">
