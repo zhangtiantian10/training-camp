@@ -8,7 +8,6 @@ function insertStudent(studentInformation,res) {
         if (err) {
            console.log(err);
         } else {
-            console.log(result);
             if (result.length === 0) {
                 res.json({isSaved:false});
             } else
@@ -29,8 +28,25 @@ function getAllStudent(res){
     });
 }
 
+function removeStudent(id, res) {
+    const connection = require('./connection');
+    const removeSql=`DELETE FROM student where id=${id}`;
+    connection.query(removeSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            if(result.length === 0){
+                res.json({isRemoved:false});
+            }else{
+                res.json({isRemoved:true});
+            }
+        }
+    });
+}
+
 
 module.exports = {
     insertStudent,
-    getAllStudent
+    getAllStudent,
+    removeStudent
 };

@@ -12,12 +12,12 @@ router.post('/insertStudent', (req, res) => {
 });
 
 router.post('/getAllStudent',(req,res)=>{
-    console.log(req.body);
     studentMange.getAllStudent(res)
 });
 
 router.post('/removeStudent',(req,res)=>{
-    console.log("req+++",req.body);
+    const student_id=req.body.student_id;
+    studentMange.removeStudent(student_id,res);
 });
 
 module.exports = router;

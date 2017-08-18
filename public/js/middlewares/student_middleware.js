@@ -27,7 +27,8 @@ export default store => next => action => {
         request.post('/removeStudent')
             .send({student_id:action.data})
             .end((err,res)=>{
-                next({type:"REMOVE_STUDENT"});
+                console.log(res.body.isRemoved);
+                next({type:"REMOVE_STUDENT",isRemoved:res.body.isRemoved});
             })
     }
     else
