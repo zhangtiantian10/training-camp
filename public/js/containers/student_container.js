@@ -4,7 +4,8 @@ import Hello from '../components/student_component';
 const mapStateToProps = (state) => {
     console.log("state",state);
     return {
-        isSaved:state.student.isSaved
+        isSaved:state.student.isSaved,
+        allUser:state.student.allUser
     }
 };
 
