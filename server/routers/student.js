@@ -13,6 +13,7 @@ router.post('/insertStudent', (req, res) => {
 
 router.post('/getAllStudent',(req,res)=>{
     console.log(req.body);
+    studentMange.getAllStudent(res)
 });
 
 module.exports = router;

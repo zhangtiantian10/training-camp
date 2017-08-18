@@ -17,7 +17,24 @@ function insertStudent(studentInformation,res) {
     });
 }
 
+function getAllStudent(res){
+    const connection = require('./connection');
+    const searchSql='select * from student';
+    connection.query(searchSql,(err,result)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(result);
+            if (result.length === 0) {
+                res.json({getAll:''});
+            } else
+                res.json({getAll:result});
+        }
+    });
+}
+
 
 module.exports = {
     insertStudent,
+    getAllStudent
 };
