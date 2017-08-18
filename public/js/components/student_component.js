@@ -9,6 +9,10 @@ class Student extends Component {
             this.props.getAllStudent();
             return 0;
         }
+        var isRemoved=this.props.isRemoved;
+        if(isRemoved){
+            this.props.getAllStudent();
+        }
     }
 
     componentWillMount() {
