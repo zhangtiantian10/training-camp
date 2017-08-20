@@ -51,11 +51,6 @@ class Student extends Component {
 
     }
 
-
-    onRemove(id) {
-        this.props.onRemove(id);
-    }
-
     onSearch() {
         const student_name = document.getElementById("student_name").value;
         this.props.onSearch(student_name);
@@ -129,7 +124,7 @@ class Student extends Component {
                         <th className="textStyle">专业</th>
                         <th className="textStyle">年级</th>
                         <th className="textStyle">性别</th>
-                        <th className="textStyle" colSpan="2">操作</th>
+                        <th className="textStyle">操作</th>
                     </tr>
                     {
                         this.props.allStudent.map((element)=> {
@@ -147,12 +142,6 @@ class Student extends Component {
                                     <button type="button" className="btn btn-default"
                                             data-toggle="modal" data-target="#secondModal"
                                             onClick={this.insertValue.bind(this, element)}>修改
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" className="btn btn-default"
-                                            onClick={this.onRemove.bind(this, element.id)}>
-                                        删除
                                     </button>
                                 </td>
                             </tr>

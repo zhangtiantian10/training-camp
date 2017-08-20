@@ -22,12 +22,6 @@ export default store => next => action => {
             .end((err, res)=> {
                 next({type: "GETALL_STUDENT", data: res.body.getAll});
             })
-    } else if (action.type === "REMOVE_STUDENT") {
-        request.post('/removeStudent')
-            .send({student_id: action.data})
-            .end((err, res)=> {
-                next({type: "REMOVE_STUDENT", isRemoved: res.body.isRemoved});
-            })
     } else if (action.type === "SEARCH_ONE") {
         request.post('/searchOne')
             .send({search_name: action.data})

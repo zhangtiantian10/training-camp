@@ -52,22 +52,6 @@ function getAllStudent(res) {
     });
 }
 
-function removeStudent(id, res) {
-    const connection = require('./connection');
-    const removeSql = `DELETE FROM student where id=${id}`;
-    connection.query(removeSql, (err, result)=> {
-        if (err) {
-            throw err;
-        } else {
-            if (result.length === 0) {
-                res.json({isRemoved: false});
-            } else {
-                res.json({isRemoved: true});
-            }
-        }
-    });
-}
-
 function searchOne(name, res) {
     const connection = require('./connection');
     var searchSql;
@@ -100,7 +84,6 @@ function modifyStudent(information, res) {
 module.exports = {
     insertStudent,
     getAllStudent,
-    removeStudent,
     searchOne,
     modifyStudent
 };

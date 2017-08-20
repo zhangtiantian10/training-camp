@@ -19,9 +19,6 @@ const mapDispatchToProps = (dispatch) => {
             console.log(data);
             dispatch({type: "ADD_STUDENT", data});
         },
-        onRemove: (data)=> {
-            dispatch({type: "REMOVE_STUDENT", data});
-        },
         onSearch: (data)=> {
             dispatch({type: "SEARCH_ONE", data});
         },
