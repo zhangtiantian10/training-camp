@@ -21,8 +21,8 @@ router.post('/removeStudent', (req, res)=> {
 });
 
 router.post('/searchOne', (req, res)=> {
-    const search_id = req.body.search_id;
-    studentMange.searchOne(search_id, res);
+    const search_name = req.body.search_name;
+    studentMange.searchOne(search_name, res);
 });
 
 router.post('/modifyStudent', (req, res)=> {

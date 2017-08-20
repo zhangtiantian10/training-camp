@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({type: "GETALL_STUDENT"});
         },
         onSubmit: (data) => {
+            console.log(data);
             dispatch({type: "ADD_STUDENT", data});
         },
         onRemove: (data)=> {

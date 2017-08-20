@@ -1,11 +1,11 @@
 function insertStudent(studentInformation, res) {
     const connection = require('./connection');
-    console.log("info", studentInformation);
     let addSql = 'INSERT INTO student(name,school,city,team,major,gender,grade,zone)VALUES(?,?,?,?,?,?,?,?)';
     connection.query(addSql, studentInformation, (err, result) => {
         if (err) {
             console.log(err);
         } else {
+
             if (result.length === 0) {
                 res.json({isSaved: false});
             } else
@@ -42,9 +42,14 @@ function removeStudent(id, res) {
     });
 }
 
-function searchOne(id, res) {
+function searchOne(name, res) {
     const connection = require('./connection');
-    const searchSql = `SELECT * FROM student WHERE id=${id}`;
+    var searchSql;
+    if (name) {
+        searchSql = `SELECT * FROM student WHERE name="${name}"`
+    } else {
+        searchSql = `SELECT * FROM student`
+    }
     connection.query(searchSql, (err, result)=> {
         if (err) {
             console.log(err);
