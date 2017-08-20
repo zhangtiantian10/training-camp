@@ -43,7 +43,6 @@ function getAllStudent(res) {
     const connection = require('./connection');
     const searchSql = 'select * from student';
     connection.query(searchSql, (err, result)=> {
-        console.log(result);
         if (err) {
             throw err;
         } else {

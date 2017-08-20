@@ -1,7 +1,6 @@
 import request from 'superagent';
 
 export default store => next => action => {
-    console.log("action", action);
     if (action.type === 'ADD_STUDENT') {
         request.post('/insertStudent')
             .send({

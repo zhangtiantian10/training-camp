@@ -7,7 +7,6 @@ class TaskScore extends Component{
         const zone=$("#zone").val();
         const team=$("#team").val();
         const keyType=$("#keyType").val();
-        console.log(zone,team,keyType);
         this.props.selectData({zone,team,keyType});
     }
 
