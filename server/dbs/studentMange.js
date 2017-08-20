@@ -1,15 +1,26 @@
 function insertStudent(studentInformation, res) {
     const connection = require('./connection');
-    let addSql = 'INSERT INTO student(name,school,city,team,major,gender,grade,zone)VALUES(?,?,?,?,?,?,?,?)';
+    const addSql = 'INSERT INTO student(name,school,city,team,major,gender,grade,zone)VALUES(?,?,?,?,?,?,?,?)';
+    const selectString = 'select student.id as studentId,week_detail.id as weekId from student, week_detail';
     connection.query(addSql, studentInformation, (err, result) => {
         if (err) {
             console.log(err);
         } else {
+            connection.query(selectString,(err,result)=>{
+                var insertWeekScore=`insert week_score(student_id,week_id) values`;
+                insertWeekScore =insertWeekScore+ result.map(d => {
+                    return ` (${d.studentId}, ${d.weekId})`
+                }).join(',');
 
-            if (result.length === 0) {
-                res.json({isSaved: false});
-            } else
-                res.json({isSaved: true});
+                connection.query(insertWeekScore,(err,result)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log("true");
+                        res.json({isSaved: true});
+                    }
+                });
+            });
         }
     });
 }
