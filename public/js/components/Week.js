@@ -12,7 +12,7 @@ export default class Week extends React.Component{
     componentWillUpdate(nextProps) {
         if(nextProps.addSuccess) {
             alert('添加成功!');
-            this.props.onModifyAddSuccess();
+            this.props.getAllWeeks();
         } else if(nextProps.addSuccess === false) {
             alert('添加失败!');
             this.props.onModifyAddSuccess();
@@ -22,6 +22,7 @@ export default class Week extends React.Component{
             this.props.getAllWeeks();
         } else if(nextProps.modifySuccess === false) {
             alert("修改失败！");
+            this.props.onModifyAddSuccess();
         }
     }
 
@@ -77,7 +78,7 @@ export default class Week extends React.Component{
                     <label>任务卡数</label>
                     <input type="text" className="form-control" ref="cardNumber" placeholder="1"/>
                 </div>
-                <button className="btn btn-default" onClick={this.addWeek.bind(this)}>添加</button>
+                <button type="button" className="btn btn-default" onClick={this.addWeek.bind(this)}>添加</button>
             </form>
             <div className="col-md-8 col-md-offset-2 tablePaddingTop">
                 <table className="table table-bordered">
