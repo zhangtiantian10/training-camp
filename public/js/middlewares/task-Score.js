@@ -1,6 +1,7 @@
 import request from "superagent";
 
 export default store => next => action => {
+    console.log(action);
     if(action.type === "SELECT_DATA"){
         console.log(action.type);
         request.post('/selectTaskcard')
@@ -8,7 +9,14 @@ export default store => next => action => {
             .end((err,res)=>{
                 next({type:"SELECT_DATA"});
             })
-    }else{
+    }else if(action.type === "GETALL_TASK"){
+        request.post('/getAllTask')
+            .end((err,res)=>{
+                console.log(res.body);
+                next({type:"GETALL_TASK"});
+            })
+    }
+    else{
         next(action);
     }
 }

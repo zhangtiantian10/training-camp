@@ -13,6 +13,9 @@ const mapDispatchToProps=(dispatch)=>{
     return {
         selectData: (data)=> {
             dispatch({type: "SELECT_DATA", data});
+        },
+        getAllTask:()=>{
+            dispatch({type:"GETALL_TASK"});
         }
     }
 };

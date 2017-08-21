@@ -3,11 +3,15 @@ import Nav from "../containers/nav";
 
 class TaskScore extends Component{
 
+    componentWillMount(){
+        this.props.getAllTask();
+    }
+
     filterData(){
         const zone=$("#zone").val();
         const team=$("#team").val();
-        const keyType=$("#keyType").val();
-        this.props.selectData({zone,team,keyType});
+        const keyValue=$("#keyValue").val();
+        this.props.selectData({zone,team,keyValue});
     }
 
 
@@ -33,10 +37,7 @@ class TaskScore extends Component{
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <select className="form-control" id="keyType">
-                        <option value="student_name" className="textStyle">学生姓名</option>
-                        <option value="taskcard_name" className="textStyle">任务卡名称</option>
-                    </select>
+                    <input type="text" className="form-control" id="keyValue" placeholder="请输入学生姓名"/>
                 </div>
                 <div className="col-md-2">
                     <button type="button" className="btn btn-default textStyle" onClick={this.filterData.bind(this)}>查找</button>
