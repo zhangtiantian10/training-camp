@@ -12,8 +12,7 @@ export default store => next => action => {
     }else if(action.type === "GETALL_TASK"){
         request.post('/getAllTask')
             .end((err,res)=>{
-                console.log(res.body);
-                next({type:"GETALL_TASK"});
+                next({type:"GETALL_TASK",data:res.body});
             })
     }
     else{
