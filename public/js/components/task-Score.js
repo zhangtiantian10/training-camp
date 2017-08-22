@@ -48,6 +48,7 @@ class TaskScore extends Component{
                 <table className="table table-bordered">
                     <thead>
                     <tr className="active">
+                        <th className="col-md-1 textStyle">学生ID</th>
                         <th className="col-md-1 textStyle">学生姓名</th>
                         <th className="col-md-1 textStyle">任务卡名称</th>
                         <th className="col-md-1 textStyle">完成日期</th>
@@ -58,19 +59,20 @@ class TaskScore extends Component{
                     </tr>
                     </thead>
                     <tbody>
-                   {/* {
-                        this.props.allTask.map((element)=>{
-                            return <tr>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
-                                <td className="textStyle">{element.id}</td>
+                   {
+                        this.props.allTask.map((element,index)=>{
+                            return <tr key={index}>
+                                <td className="textStyle">{element.student_id}</td>
+                                <td className="textStyle">{element.student_name}</td>
+                                <td className="textStyle">{element.task_name}</td>
+                                <td className="textStyle">{element.finished_date}</td>
+                                <td className="textStyle">{element.review_date}</td>
+                                <td className="textStyle">{element.review_grade}</td>
+                                <td className="textStyle">{element.upgrade_date}</td>
+                                <td className="textStyle">{element.upgrade_grade}</td>
                             </tr>
                         })
-                    }*/}
+                    }
                     </tbody>
                 </table>
             </div>

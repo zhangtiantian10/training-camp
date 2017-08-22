@@ -1,8 +1,10 @@
 
 function selectAllTaskcard(res) {
   const connection=require('./connection');
-    const selectIdSql = ' SELECT a.id, a.student_id,a.task_id,a.finished_date,a.review_date,a.upgrade_date,a.upgrade_grade, b.name FROM tasks_info a LEFT JOIN student b ON a.student_id = b.id;';
-    connection.query(selectIdSql,(err,result)=>{
+    const selectSql=` select a.id, a.student_id,a.task_id,a.finished_date,a.review_date,a.review_grade,a.upgrade_date,a.upgrade_grade, b.name as student_name,c.name as task_name
+ from tasks_info a,student b,tasks_card c
+ where a.student_id=b.id and a.task_id=c.id`;
+    connection.query(selectSql,(err,result)=>{
         if (err) {
             return connection.rollback(function () {
                 throw err;
