@@ -14,6 +14,10 @@ class TaskScore extends Component{
         this.props.selectData({zone,team,keyValue});
     }
 
+    onModify(taskId){
+        this.props.onModify(taskId);
+    }
+
 
     render(){
         return <div>
@@ -44,7 +48,7 @@ class TaskScore extends Component{
                 </div>
             </div>
 
-            <div className="col-md-10 col-md-offset-1 tablePaddingTop">
+            <div className="col-md-11 taskScoreTable">
                 <table className="table table-bordered">
                     <thead>
                     <tr className="active">
@@ -56,6 +60,7 @@ class TaskScore extends Component{
                         <th className="col-md-1 textStyle">审阅得分</th>
                         <th className="col-md-1 textStyle">复审日期</th>
                         <th className="col-md-1 textStyle">复审得分</th>
+                        <th className="col-md-1 textStyle">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,9 +72,18 @@ class TaskScore extends Component{
                                 <td className="textStyle">{element.task_name}</td>
                                 <td className="textStyle">{element.finished_date}</td>
                                 <td className="textStyle">{element.review_date}</td>
-                                <td className="textStyle">{element.review_grade}</td>
+                                <td className="cancelTdPadding">
+                                    <input type="text" className="form-control cancelBorder" value={element.review_grade}/>
+                                </td>
                                 <td className="textStyle">{element.upgrade_date}</td>
-                                <td className="textStyle">{element.upgrade_grade}</td>
+                                <td className="cancelTdPadding">
+                                    <input type="text" className="form-control cancelBorder" value={element.upgrade_grade}/>
+                                </td>
+                                <td className="textStyle">
+                                    <button type="button" className="btn btn-default" onClick={this.onModify.bind(this,element.task_id)}>
+                                        提交修改
+                                    </button>
+                                </td>
                             </tr>
                         })
                     }
