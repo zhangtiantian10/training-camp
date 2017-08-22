@@ -7,12 +7,13 @@ export default store => next => action => {
         request.post('/selectTaskcard')
             .send({data:action.data})
             .end((err,res)=>{
-                next({type:"SELECT_DATA"});
+                next({type:"SELECT_DATA"})
             })
     }else if(action.type === "GETALL_TASK"){
         request.post('/getAllTask')
             .end((err,res)=>{
-                next({type:"GETALL_TASK",data:res.body});
+                console.log(res.body.data);
+                next({type:"GETALL_TASK",data:res.body.data})
             })
     }
     else{

@@ -58,6 +58,19 @@ class TaskScore extends Component{
                     </tr>
                     </thead>
                     <tbody>
+                   {/* {
+                        this.props.allTask.map((element)=>{
+                            return <tr>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                                <td className="textStyle">{element.id}</td>
+                            </tr>
+                        })
+                    }*/}
                     </tbody>
                 </table>
             </div>
