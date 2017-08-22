@@ -7,6 +7,15 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
+    componentDidUpdate(){
+        console.log("lalallalal");
+        let isUpdate=this.props.isUpdate;
+        if(isUpdate){
+            alert("修改成功");
+            this.props.getAllTask();
+        }
+    }
+
     filterData() {
         const zone = $("#zone").val();
         const team = $("#team").val();
@@ -15,7 +24,6 @@ class TaskScore extends Component {
     }
 
     insertElement(element) {
-        console.log(element);
         document.getElementById("taskInfo_id").value = element.id;
         document.getElementById("student_name").value = element.student_name;
         document.getElementById("task_name").value = element.task_name;

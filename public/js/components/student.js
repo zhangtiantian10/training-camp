@@ -23,7 +23,6 @@ class Student extends Component {
 
     componentWillMount() {
         this.props.getAllStudent();
-
     }
 
     onSubmit() {
@@ -127,8 +126,8 @@ class Student extends Component {
                         <th className="textStyle">操作</th>
                     </tr>
                     {
-                        this.props.allStudent.map((element)=> {
-                            return <tr>
+                        this.props.allStudent.map((element,index)=> {
+                            return <tr key={index}>
                                 <td className="textStyle">{element.id}</td>
                                 <td className="textStyle">{element.name}</td>
                                 <td className="textStyle">{element.zone}</td>

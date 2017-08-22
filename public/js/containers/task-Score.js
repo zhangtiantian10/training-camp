@@ -3,9 +3,9 @@ import TaskScore from "../components/task-Score";
 
 
 const mapStateToProps = (state)=> {
-    console.log("allTask:",state.taskScore.allTask);
     return {
-          allTask:state.taskScore.allTask
+          allTask:state.taskScore.allTask,
+          isUpdate:state.taskScore.isUpdate
     }
 };
 
