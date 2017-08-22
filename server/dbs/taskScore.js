@@ -14,7 +14,28 @@ function selectAllTaskcard(res) {
     });
 }
 
+function modifyTask(information, res) {
+    const connection=require('./connection');
+    const updateSql=`UPDATE tasks_info SET 
+    finished_date="${information.finished_date}",
+    review_date="${information.review_date}",
+    review_grade="${information.review_grade}",
+    upgrade_date="${information.upgrade_date}",
+    upgrade_grade="${information.upgrade_grade}"
+         WHERE id=${information.taskInfo_id}`;
+
+    connection.query(updateSql,(err,result)=>{
+        if (err) {
+            return connection.rollback(function () {
+                throw err;
+            });
+        }
+       res.json({isUpdate:true});
+    });
+}
+
 
 module.exports={
-    selectAllTaskcard
+    selectAllTaskcard,
+    modifyTask
 };

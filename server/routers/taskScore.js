@@ -10,4 +10,8 @@ router.post('/getAllTask',(req,res)=>{
     taskScore.selectAllTaskcard(res)
 });
 
+router.post('/modifyTask',(req,res)=>{
+    taskScore.modifyTask(req.body.data,res);
+});
+
 module.exports=router;

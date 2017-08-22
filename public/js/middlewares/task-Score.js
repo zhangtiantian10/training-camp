@@ -13,11 +13,10 @@ export default store => next => action => {
                 next({type:"GETALL_TASK",data:res.body.data})
             })
     }else if(action.type === "MODIFY_TASK"){
-        console.log(action.data);
         request.post('/modifyTask')
-            .send({id:action.data})
+            .send({data:action.data})
             .end((err,res)=>{
-                next({type:"MODIFY_TASK"});
+                next({type:"MODIFY_TASK",isUpdate:res.body.isUpdate});
             })
     }else{
         next(action);

@@ -18,7 +18,6 @@ const mapDispatchToProps=(dispatch)=>{
             dispatch({type:"GETALL_TASK"});
         },
         onModify:(data)=>{
-            console.log(data);
             dispatch({type:"MODIFY_TASK",data});
         }
     }
