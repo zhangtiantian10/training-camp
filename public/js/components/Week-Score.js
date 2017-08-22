@@ -5,7 +5,7 @@ export default class WeekScore extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            studentsId: [],
+            ids: [],
             totalScore: 0
         };
     }
@@ -14,11 +14,21 @@ export default class WeekScore extends React.Component {
         this.props.getAllWeeks();
     }
 
+    componentWillUpdate(nextProps) {
+        if(nextProps.isUpdate === true) {
+            alert('修改成功！');
+            this.props.modifyUpdateState();
+        } else if(nextProps.isUpdate === false) {
+            alert('修改失败！');
+            this.props.modifyUpdateState();
+        }
+    }
+
     selectStudent() {
         const zone=$("#zone").val();
         const team=$("#team").val();
         const week=$("#week").val();
-        this.state.studentsId = [];
+        this.state.ids = [];
         this.props.selectStudentScore({zone, team, week: parseInt(week)});
     }
 
@@ -33,7 +43,7 @@ export default class WeekScore extends React.Component {
         const totalScores = document.getElementsByName('totalScore');
         let weekScores = [];
 
-        for (let i = 0; i < this.state.studentsId.length; i++){
+        for (let i = 0; i < this.state.ids.length; i++){
 
             const taskCard = taskCards[i].value;
             const diary = diarys[i].value;
@@ -48,7 +58,7 @@ export default class WeekScore extends React.Component {
             }
 
             weekScores.push({
-                studentId: this.state.studentsId[i],
+                id: this.state.ids[i],
                 taskCard,
                 diary,
                 standingMeeting,
@@ -59,7 +69,7 @@ export default class WeekScore extends React.Component {
             });
         };
 
-        console.log(weekScores);
+        this.props.updateWeekScores(weekScores);
     }
 
     countTotal() {
@@ -70,7 +80,7 @@ export default class WeekScore extends React.Component {
         const physicalCompetitions = document.getElementsByName('physicalCompetition');
         const positives = document.getElementsByName('positive');
 
-        this.state.studentsId.forEach((id, i) => {
+        this.state.ids.forEach((id, i) => {
             const taskCard = taskCards[i].value ? taskCards[i].value : 0;
             const diary = diarys[i].value ? diarys[i].value : 0;
             const standingMeeting = standingMeetings[i].value ? standingMeetings[i].value : 0;
@@ -136,17 +146,17 @@ export default class WeekScore extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.students.map((s, i) => {
-                        this.state.studentsId.push(s.id);
+                    {this.props.weekScores.map((s, i) => {
+                        this.state.ids.push(s.id);
                         return <tr key={i}>
-                            <td className="textStyle">{s.name}</td>
-                            <td className="cancelTdPadding"><input type="text" name="taskCard" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="diary" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="standingMeeting" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="physicalCompetition" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="tribalConflict" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="positive" className="form-control cancelBorder" onChange={this.countTotal.bind(this)}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="totalScore" className="form-control cancelBorder" id={`totalScore${s.id}`}/></td>
+                            <td className="textStyle">{this.props.students[i].name}</td>
+                            <td className="cancelTdPadding"><input type="text" name="taskCard" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.task_card}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="diary" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.diary}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="standingMeeting" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.standing_meeting}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="physicalCompetition" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.physical_competition}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="tribalConflict" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={s.tribal_conflict}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="positive" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.positive}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="totalScore" className="form-control cancelBorder" id={`totalScore${s.id}`} defaultValue={`${s.total_score}`}/></td>
                         </tr>
                     })}
                     </tbody>

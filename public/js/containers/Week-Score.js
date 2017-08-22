@@ -4,7 +4,9 @@ import WeekScore from '../components/Week-Score';
 const mapStateToProps = (state) => {
     return {
         weeks: state.week.weeks,
-        students: state.weekScore.students
+        students: state.weekScore.students,
+        weekScores: state.weekScore.weekScores,
+        isUpdate: state.weekScore.isUpdate
     };
 };
 
@@ -15,6 +17,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         selectStudentScore: (data) => {
             dispatch({type: 'SELECT_STUDENT_SCORE', data});
+        },
+        updateWeekScores: (weekScores) => {
+            dispatch({type: 'UPDATE_WEEK_SCORES', weekScores});
+        },
+        modifyUpdateState: () => {
+            dispatch({type: 'MODIFY_UPDATE_STATE'});
         }
     };
 };

@@ -5,7 +5,17 @@ export default store => next => action => {
         request.post('/studentScoreForWeek')
             .send(action.data)
             .end((err, res) => {
-                next({type: "SELECT_STUDENT_BACK", students: res.body});
+                if(err || !res.body) {
+                    alert('获取信息失败');
+                    return;
+                }
+                next({type: "SELECT_STUDENT_BACK", data: res.body});
+            })
+    } else if (action.type === 'UPDATE_WEEK_SCORES'){
+        request.post('/weekScore')
+            .send(action.weekScores)
+            .end((err, res) => {
+                next({type: 'UPDATE_WEEK_SCORES_BACK', isSuccess: res.body});
             })
     } else
         next(action);
