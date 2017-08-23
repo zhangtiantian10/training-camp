@@ -6,7 +6,10 @@ export default class WeekScore extends React.Component {
         super(props);
         this.state = {
             ids: [],
-            totalScore: 0
+            totalScore: 0,
+            week: "",
+            weekScores: [],
+            changeState: false
         };
     }
 
@@ -15,86 +18,56 @@ export default class WeekScore extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        if(nextProps.isUpdate === true) {
+        if (nextProps.isUpdate === true) {
             alert('修改成功！');
             this.props.modifyUpdateState();
-        } else if(nextProps.isUpdate === false) {
+        } else if (nextProps.isUpdate === false) {
             alert('修改失败！');
             this.props.modifyUpdateState();
         }
     }
 
     selectStudent() {
-        const zone=$("#zone").val();
-        const team=$("#team").val();
-        const week=$("#week").val();
+        this.state.changeState = true;
+        const zone = $("#zone").val();
+        const team = $("#team").val();
+        const week = $("#week").val();
         this.state.ids = [];
-        this.props.selectStudentScore({zone, team, week: parseInt(week)});
+        const weekInfo = week.split('-');
+        this.props.selectStudentScore({zone, team, week: parseInt(weekInfo[0])});
     }
 
     addWeekScore() {
-        const week=$("#week").val();
-        const taskCards = document.getElementsByName('taskCard');
-        const diarys = document.getElementsByName('diary');
-        const standingMeetings = document.getElementsByName('standingMeeting');
-        const tribalConflicts = document.getElementsByName('tribalConflict');
-        const physicalCompetitions = document.getElementsByName('physicalCompetition');
-        const positives = document.getElementsByName('positive');
-        const totalScores = document.getElementsByName('totalScore');
-        let weekScores = [];
+        const week = $("#week").val();
+        const weekScores = this.props.weekScores;
 
-        for (let i = 0; i < this.state.ids.length; i++){
-
-            const taskCard = taskCards[i].value;
-            const diary = diarys[i].value;
-            const standingMeeting = standingMeetings[i].value;
-            const tribalConflict = tribalConflicts[i].value;
-            const physicalCompetition = physicalCompetitions[i].value;
-            const positive = positives[i].value;
-            const totalScore = totalScores[i].value;
-            if(!taskCard || !diary || !standingMeeting || !tribalConflict || !physicalCompetition || !positive || totalScore === "NaN") {
-                alert("信息不全或信息有误！");
-                return ;
-            }
-
-            weekScores.push({
-                id: this.state.ids[i],
-                taskCard,
-                diary,
-                standingMeeting,
-                tribalConflict,
-                physicalCompetition,
-                positive,
-                totalScore
-            });
-        };
-
-        this.props.updateWeekScores(weekScores);
+        this.props.updateWeekScores({weekScores, weekName: week.split('-')[1]});
     }
 
-    countTotal() {
-        const taskCards = document.getElementsByName('taskCard');
-        const diarys = document.getElementsByName('diary');
-        const standingMeetings = document.getElementsByName('standingMeeting');
-        const tribalConflicts = document.getElementsByName('tribalConflict');
-        const physicalCompetitions = document.getElementsByName('physicalCompetition');
-        const positives = document.getElementsByName('positive');
+    countTotal(string, i, even) {
+        this.props.weekScores[i][`${string}`] = even.target.value;
+        const weekScore = this.props.weekScores[i];
+        const taskCard = weekScore.task_card;
+        const diary = weekScore.diary
+        const standingMeeting = weekScore.standing_meeting;
+        const tribalConflict = weekScore.tribal_conflict;
+        const physicalCompetition = weekScore.physical_competition;
+        const positive = weekScore.positive;
 
-        this.state.ids.forEach((id, i) => {
-            const taskCard = taskCards[i].value ? taskCards[i].value : 0;
-            const diary = diarys[i].value ? diarys[i].value : 0;
-            const standingMeeting = standingMeetings[i].value ? standingMeetings[i].value : 0;
-            const tribalConflict = tribalConflicts[i].value ? tribalConflicts[i].value : 0;
-            const physicalCompetition = physicalCompetitions[i].value ? physicalCompetitions[i].value : 0;
-            const positive = positives[i].value ? positives[i].value : 0;
-
-            const total = parseInt(taskCard) + parseInt(diary) + parseInt(standingMeeting) + parseInt(tribalConflict) + parseInt(physicalCompetition) + parseInt(positive);
-            document.getElementById(`totalScore${id}`).value = total;
+        const total = parseInt(taskCard) + parseInt(diary) + parseInt(standingMeeting) + parseInt(tribalConflict) + parseInt(physicalCompetition) + parseInt(positive);
+        this.props.weekScores[i].total_score = total ? total : 0;
+        this.setState({
+            weekScores: this.props.weekScores
         });
-
     }
 
     render() {
+        if(this.state.changeState) {
+            this.state.changeState = false;
+            this.setState({
+                weekScores: this.props.weekScores
+            });
+        }
         return <div>
             <Nav/>
             <div className="col-md-offset-2 tablePaddingTop">
@@ -116,19 +89,23 @@ export default class WeekScore extends React.Component {
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <button type="button" className="btn btn-default textStyle" onClick={this.selectStudent.bind(this)}>查找</button>
-                </div>
-                <div className="col-md-2">
                     <select className="form-control textStyle" id="week">
                         {this.props.weeks.map((w, i) => {
-                            return <option key={i} value={`${w.id}`} className="textStyle">
+                            return <option key={i} value={`${w.id}-${w.week_code}`} className="textStyle">
                                 {w.week_code}
                             </option>
                         })}
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <button type="button" className="btn btn-default textStyle" onClick={this.addWeekScore.bind(this)}>提交</button>
+                    <button type="button" className="btn btn-default textStyle" onClick={this.selectStudent.bind(this)}>
+                        查找
+                    </button>
+                </div>
+                <div className="col-md-2">
+                    <button type="button" className="btn btn-default textStyle" onClick={this.addWeekScore.bind(this)}>
+                        提交
+                    </button>
                 </div>
             </div>
             <div className="col-md-10 col-md-offset-1 tablePaddingTop">
@@ -146,17 +123,38 @@ export default class WeekScore extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.weekScores.map((s, i) => {
+                    {this.state.weekScores.map((s, i) => {
                         this.state.ids.push(s.id);
                         return <tr key={i}>
                             <td className="textStyle">{this.props.students[i].name}</td>
-                            <td className="cancelTdPadding"><input type="text" name="taskCard" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.task_card}`}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="diary" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.diary}`}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="standingMeeting" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.standing_meeting}`}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="physicalCompetition" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.physical_competition}`}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="tribalConflict" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={s.tribal_conflict}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="positive" className="form-control cancelBorder" onChange={this.countTotal.bind(this)} defaultValue={`${s.positive}`}/></td>
-                            <td className="cancelTdPadding"><input type="text" name="totalScore" className="form-control cancelBorder" id={`totalScore${s.id}`} defaultValue={`${s.total_score}`}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="taskCard"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'task_card', i)}
+                                                                   value={s.task_card}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="diary"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'diary', i)}
+                                                                   value={s.diary}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="standingMeeting"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'standing_meeting', i)}
+                                                                   value={s.standing_meeting}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="physicalCompetition"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'physical_competition', i)}
+                                                                   value={s.physical_competition}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="tribalConflict"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'tribal_conflict', i)}
+                                                                   value={s.tribal_conflict}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="positive"
+                                                                   className="form-control cancelBorder"
+                                                                   onChange={this.countTotal.bind(this, 'positive', i)}
+                                                                   value={s.positive}/></td>
+                            <td className="cancelTdPadding"><input type="text" name="totalScore"
+                                                                   className="form-control cancelBorder"
+                                                                   id={`totalScore${s.id}`}
+                                                                   value={s.total_score}/></td>
                         </tr>
                     })}
                     </tbody>

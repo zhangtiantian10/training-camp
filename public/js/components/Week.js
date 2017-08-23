@@ -58,7 +58,6 @@ export default class Week extends React.Component{
     }
 
     render() {
-        console.log(this.props.modifySuccess);
         return <div>
             <Nav/>
             <form className="col-md-12 form-inline tablePaddingTop">

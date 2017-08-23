@@ -29,22 +29,33 @@ function addWeek(res, data) {
                     return ` (${s.id}, ${result.insertId})`
                 }).join(',');
 
-                connection.query(insertScore, (err, data) => {
+                connection.query(insertScore, (err, insertScore) => {
                     if (err) {
                         return connection.rollback(() => {
                             res.json(false);
                             return ;
                         });
                     }
-                    connection.commit(function(err) {
+
+                    const insertWeekTotal = `ALTER TABLE total_score add \`${data.weekCode}\` DOUBLE(5,2) NULL DEFAULT '0.00' ;`;
+                    connection.query(insertWeekTotal, (err, insert) => {
                         if (err) {
-                            return connection.rollback(function() {
+                            return connection.rollback(() => {
                                 console.log(err);
                                 res.json(false);
-                                return;
+                                return ;
                             });
                         }
-                        res.json(true);
+                        connection.commit(function(err) {
+                            if (err) {
+                                return connection.rollback(function() {
+                                    console.log(err);
+                                    res.json(false);
+                                    return;
+                                });
+                            }
+                            res.json(true);
+                        });
                     });
                 });
             });
