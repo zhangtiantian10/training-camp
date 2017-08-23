@@ -16,7 +16,6 @@ function insertStudent(studentInformation, res) {
             }
             const insert_total_score = `insert into total_score (student_id) values (${result.insertId})`;
 
-            console.log(insert_total_score);
             connection.query(selectString, (err, select)=> {
                 if (err) {
                     return connection.rollback(function () {
@@ -24,25 +23,14 @@ function insertStudent(studentInformation, res) {
                         return;
                     });
                 }
-                let insertWeekScore = `insert week_score (student_id, week_id) values`;
-                insertWeekScore += select.map(d => {
-                    return ` (${result.insertId}, ${d.id})`
-                }).join(',');
-                connection.query(insertWeekScore, (err, insert)=> {
+                connection.query(insert_total_score, (err, data)=> {
                     if (err) {
                         return connection.rollback(function () {
                             res.json({isSaved: false});
                             return;
                         });
                     }
-
-                    connection.query(insert_total_score, (err, data)=> {
-                        if (err) {
-                            return connection.rollback(function () {
-                                res.json({isSaved: false});
-                                return;
-                            });
-                        }
+                    if(select.length === 0) {
                         connection.commit(function (err) {
                             if (err) {
                                 return connection.rollback(function () {
@@ -52,7 +40,31 @@ function insertStudent(studentInformation, res) {
                             }
                             res.json({isSaved: true});
                         });
-                    });
+                    } else {
+                        let insertWeekScore = `insert week_score (student_id, week_id) values`;
+                        insertWeekScore += select.map(d => {
+                            return ` (${result.insertId}, ${d.id})`
+                        }).join(',');
+                        connection.query(insertWeekScore, (err, insert)=> {
+                            if (err) {
+
+                                return connection.rollback(function () {
+                                    res.json({isSaved: false});
+                                    return;
+                                });
+                            }
+
+                            connection.commit(function (err) {
+                                if (err) {
+                                    return connection.rollback(function () {
+                                        res.json({isSaved: false});
+                                        return;
+                                    });
+                                }
+                                res.json({isSaved: true});
+                            });
+                        });
+                    }
                 });
             });
         });
@@ -63,7 +75,6 @@ function getAllStudent(res) {
     const connection = require('./connection');
     const searchSql = 'select * from student';
     connection.query(searchSql, (err, result)=> {
-        console.log(result);
         if (err) {
             throw err;
         } else {
