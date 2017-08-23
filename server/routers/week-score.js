@@ -6,4 +6,8 @@ router.post('/studentScoreForWeek', (req, res) => {
     Dao.getStudentScore(res, req.body);
 });
 
+router.post('/weekScore', (req, res) => {
+    Dao.updateWeekScores(res, req.body);
+})
+
 module.exports = router;
