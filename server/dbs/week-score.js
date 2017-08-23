@@ -1,3 +1,23 @@
+function countTaskScore(weekScores, grades, number) {
+
+    return weekScores.map(weekScore => {
+        const taskScore = grades.reduce((p, n) => {
+            if(n.studentId === weekScore.student_id) {
+                return p + parseInt(n.grade);
+            }
+
+            return p;
+        }, 0);
+
+
+        weekScore.total_score = weekScore.total_score - weekScore.task_card;
+        weekScore.task_card = parseFloat((taskScore / (number * 10) * 60).toFixed(2));
+        weekScore.total_score = weekScore.total_score + weekScore.task_card;
+
+        return weekScore;
+    });
+}
+
 function getStudentScore(res, data) {
     const connection = require('./connection');
 
@@ -14,21 +34,35 @@ function getStudentScore(res, data) {
                 });
             }
 
-            connection.query(`select * from week_score where student_id in (select id from student where zone='${data.zone}' and team='${data.team}') && week_id=${data.week}`, (err, weekScores) => {
+            connection.query(`select * from week_score where student_id in (select id from student where zone='${data.zone}' and team='${data.team}') && week_id=${data.weekId}`, (err, weekScores) => {
                 if (err) {
                     return connection.rollback(() => {
                         res.json(false);
                     });
                 }
 
-                connection.commit(function (err) {
+                const studentId = weekScores.map(w => {
+                    return w.student_id;
+                }).join(',');
+                const selectTaskInfoSql = `select student_id as studentId, review_grade as grade from tasks_info where review_date between '${data.startTime}' and '${data.endTime}' and student_id in (${studentId})`;
+
+                connection.query(selectTaskInfoSql, (err, grades) => {
                     if (err) {
-                        return connection.rollback(function () {
+                        return connection.rollback(() => {
                             res.json(false);
                         });
                     }
-                    console.log({students: result, weekScores});
-                    res.json({students: result, weekScores});
+
+                    weekScores = countTaskScore(weekScores, grades, data.cardNumber);
+
+                    connection.commit(function (err) {
+                        if (err) {
+                            return connection.rollback(function () {
+                                res.json(false);
+                            });
+                        }
+                        res.json({students: result, weekScores});
+                    });
                 });
             });
         });
@@ -38,7 +72,6 @@ function getStudentScore(res, data) {
 function updateWeekScores(res, weekInfo) {
     const connection = require('./connection');
 
-    console.log(weekInfo);
     let weekScores = weekInfo.weekScores;
     let taskCard = 'task_card=case id';
     let standingMeeting = 'standing_meeting=case id';
@@ -81,7 +114,6 @@ function updateWeekScores(res, weekInfo) {
             }
 
             const updateTotalScoreSql = `update total_score set ${weekName} end where student_id in(${studentIdSql})`;
-            console.log(updateTotalScoreSql);
             connection.query(updateTotalScoreSql, (err, data) => {
                 if (err) {
                     return connection.rollback(() => {

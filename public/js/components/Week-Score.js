@@ -7,7 +7,6 @@ export default class WeekScore extends React.Component {
         this.state = {
             ids: [],
             totalScore: 0,
-            week: "",
             weekScores: [],
             changeState: false
         };
@@ -33,8 +32,9 @@ export default class WeekScore extends React.Component {
         const team = $("#team").val();
         const week = $("#week").val();
         this.state.ids = [];
-        const weekInfo = week.split('-');
-        this.props.selectStudentScore({zone, team, week: parseInt(weekInfo[0])});
+        const weekSplit = week.split('-');
+        const weekInfo = this.props.weeks.find(w => w.id === parseInt(weekSplit[0]));
+        this.props.selectStudentScore({zone, team, weekId: parseInt(weekSplit[0]), startTime: weekInfo.start_date, endTime: weekInfo.end_date, cardNumber: weekInfo.card_number});
     }
 
     addWeekScore() {
@@ -129,7 +129,6 @@ export default class WeekScore extends React.Component {
                             <td className="textStyle">{this.props.students[i].name}</td>
                             <td className="cancelTdPadding"><input type="text" name="taskCard"
                                                                    className="form-control cancelBorder"
-                                                                   onChange={this.countTotal.bind(this, 'task_card', i)}
                                                                    value={s.task_card}/></td>
                             <td className="cancelTdPadding"><input type="text" name="diary"
                                                                    className="form-control cancelBorder"
