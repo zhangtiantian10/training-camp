@@ -7,7 +7,7 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
-    componentDidUpdate(){
+ /*   componentDidMount(){
         console.log("lalallalal");
         let isUpdate=this.props.isUpdate;
         if(isUpdate){
@@ -15,6 +15,22 @@ class TaskScore extends Component {
             this.props.getAllTask();
         }
     }
+
+*/
+
+
+
+
+
+    componentDidUpdate(){
+       let isUpdate=this.props.isUpdate;
+        console.log(isUpdate);
+        if(isUpdate){
+            this.props.getAllTask();
+        }
+
+    }
+
 
     filterData() {
         const zone = $("#zone").val();
