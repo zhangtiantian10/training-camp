@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onModify: (data)=> {
             dispatch({type: "MODIFY_STUDENT", data});
+        },
+        changeState: () => {
+            dispatch({type: "CHANGE_STATE"});
         }
     }
 };
