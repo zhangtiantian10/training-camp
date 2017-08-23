@@ -19,8 +19,9 @@ class TaskScore extends Component {
     filterData() {
         const zone = $("#zone").val();
         const team = $("#team").val();
-        const keyValue = $("#keyValue").val();
-        this.props.selectData({zone, team, keyValue});
+        const studentName = $("#keyValue").val();
+        console.log(zone,team,studentName);
+        this.props.filterData({zone, team, studentName});
     }
 
     insertElement(element) {
