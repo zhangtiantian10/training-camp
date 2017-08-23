@@ -7,25 +7,9 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
- /*   componentDidMount(){
-        console.log("lalallalal");
-        let isUpdate=this.props.isUpdate;
-        if(isUpdate){
-            alert("修改成功");
-            this.props.getAllTask();
-        }
-    }
-
-*/
-
-
-
-
-
     componentDidUpdate(){
-       let isUpdate=this.props.isUpdate;
-        console.log(isUpdate);
-        if(isUpdate){
+       var isUpdate=this.props.isUpdate;
+        if(isUpdate == true){
             this.props.getAllTask();
         }
 

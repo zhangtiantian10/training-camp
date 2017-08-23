@@ -16,7 +16,6 @@ export default store => next => action => {
         request.post('/modifyTask')
             .send({data:action.data})
             .end((err,res)=>{
-                console.log(res.body);
                 next({type:"MODIFY_TASK",isUpdate:res.body.isUpdate});
             })
     }else{
