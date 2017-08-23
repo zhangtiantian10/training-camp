@@ -10,9 +10,9 @@ import TaskScore from "./containers/task-Score";
 import studentMiddleware from './middlewares/student';
 import taskcardMiddleware from './middlewares/taskCard';
 import getAllTaskcardMiddleware from './middlewares/getAllTadkcard';
-import Nav from './containers/nav'
 import Week from './containers/Week';
 import WeekScore from './containers/Week-Score';
+import TotalScore from './containers/total_score';
 
 
 import weekMiddle from './middlewares/week';
@@ -29,6 +29,6 @@ render(<Provider store={store}>
         <Route path="taskcard" component={TaskCard}/>
         <Route path="/weekScore" component={WeekScore}/>
         <Route path="/taskScore" component={TaskScore}/>
-        <Route path="/nav" component={Nav}></Route>
+        <Route path="/totalScore" component={TotalScore}/>
     </Router>
 </Provider>, document.getElementById("content"));
