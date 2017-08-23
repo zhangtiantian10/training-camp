@@ -19,6 +19,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         onModify:(data)=>{
             dispatch({type:"MODIFY_TASK",data});
+        },
+        filterData:(data)=>{
+            dispatch({type:"FILTER_TASK",data});
         }
     }
 };
