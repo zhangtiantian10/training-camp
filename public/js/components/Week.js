@@ -41,6 +41,11 @@ export default class Week extends React.Component{
             alert('输入不能为空!');
             return ;
         }
+
+        if(startDate > endDate) {
+            alert('开始时间不能大于结束时间！');
+            return;
+        }
         this.props.onAdd({weekCode, startDate, endDate, cardNumber: parseInt(cardNumber)});
     }
 

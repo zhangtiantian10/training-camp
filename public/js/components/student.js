@@ -132,8 +132,8 @@ class Student extends Component {
                         <th className="textStyle" colSpan="2">操作</th>
                     </tr>
                     {
-                        this.props.allStudent.map((element)=> {
-                            return <tr>
+                        this.props.allStudent.map((element, i)=> {
+                            return <tr key={i}>
                                 <td className="textStyle">{element.id}</td>
                                 <td className="textStyle">{element.name}</td>
                                 <td className="textStyle">{element.zone}</td>

@@ -1,45 +1,85 @@
+function insertTaskInfo(id, connection, res) {
+    const selectTaskSql = 'select id from tasks_card';
+
+    connection.query(selectTaskSql, (err, result) => {
+        if (err) {
+            console.log(err);
+            return connection.rollback(function () {
+                res.json({isSaved: false});
+            });
+        }
+
+        if (result.length === 0) {
+            connection.commit(function (err) {
+                if (err) {
+                    console.log(err);
+                    return connection.rollback(function () {
+                        res.json({isSaved: false});
+                    });
+                }
+                res.json({isSaved: true});
+            });
+        } else {
+            let insertTaskInfo = `insert tasks_info (student_id, task_id) values`;
+            insertTaskInfo += result.map(d => {
+                return ` (${id}, ${d.id})`
+            }).join(',');
+
+            connection.query(insertTaskInfo, (err, result) => {
+                if (err) {
+                    console.log(err);
+                    return connection.rollback(function () {
+                        res.json({isSaved: false});
+                    });
+                }
+                connection.commit(function (err) {
+                    if (err) {
+                        console.log(err);
+                        return connection.rollback(function () {
+                            res.json({isSaved: false});
+                        });
+                    }
+                    res.json({isSaved: true});
+                });
+            })
+        }
+    })
+}
+
 function insertStudent(studentInformation, res) {
     const connection = require('./connection');
     const addSql = 'INSERT INTO student(name,school,city,team,major,gender,grade,zone)VALUES(?,?,?,?,?,?,?,?)';
-    const selectString = 'select id from week_detail';
+    const selectWeekDetailSql = 'select id from week_detail';
+
     connection.beginTransaction((err) => {
         if (err) {
             res.json({isSaved: false});
-            return;
         }
         connection.query(addSql, studentInformation, (err, result) => {
             if (err) {
+                console.log(err);
                 return connection.rollback(function () {
                     res.json({isSaved: false});
-                    return;
                 });
             }
             const insert_total_score = `insert into total_score (student_id) values (${result.insertId})`;
-
-            connection.query(selectString, (err, select)=> {
+            connection.query(insert_total_score, (err, data)=> {
                 if (err) {
+                    console.log(err);
                     return connection.rollback(function () {
                         res.json({isSaved: false});
-                        return;
                     });
                 }
-                connection.query(insert_total_score, (err, data)=> {
+                connection.query(selectWeekDetailSql, (err, select)=> {
                     if (err) {
+                        console.log(err);
                         return connection.rollback(function () {
                             res.json({isSaved: false});
-                            return;
                         });
                     }
-                    if(select.length === 0) {
-                        connection.commit(function (err) {
-                            if (err) {
-                                return connection.rollback(function () {
-                                    res.json({isSaved: false});
-                                    return;
-                                });
-                            }
-                            res.json({isSaved: true});
-                        });
+
+                    if (select.length === 0) {
+                        insertTaskInfo(result.insertId, connection, res);
                     } else {
                         let insertWeekScore = `insert week_score (student_id, week_id) values`;
                         insertWeekScore += select.map(d => {
@@ -48,21 +88,13 @@ function insertStudent(studentInformation, res) {
                         connection.query(insertWeekScore, (err, insert)=> {
                             if (err) {
 
+                                console.log(err);
                                 return connection.rollback(function () {
                                     res.json({isSaved: false});
-                                    return;
                                 });
                             }
 
-                            connection.commit(function (err) {
-                                if (err) {
-                                    return connection.rollback(function () {
-                                        res.json({isSaved: false});
-                                        return;
-                                    });
-                                }
-                                res.json({isSaved: true});
-                            });
+                            insertTaskInfo(result.insertId, connection, res);
                         });
                     }
                 });
