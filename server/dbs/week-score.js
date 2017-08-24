@@ -23,6 +23,7 @@ function getStudentScore(res, data) {
 
     connection.beginTransaction((err) => {
         if (err) {
+            console.log(err);
             res.json(false);
             return;
         }
@@ -30,6 +31,7 @@ function getStudentScore(res, data) {
         connection.query(`select name from student where zone='${data.zone}' and team='${data.team}'`, (err, result) => {
             if (err) {
                 return connection.rollback(() => {
+                    console.log(err);
                     res.json(false);
                 });
             }
@@ -37,8 +39,23 @@ function getStudentScore(res, data) {
             connection.query(`select * from week_score where student_id in (select id from student where zone='${data.zone}' and team='${data.team}') && week_id=${data.weekId}`, (err, weekScores) => {
                 if (err) {
                     return connection.rollback(() => {
+                        console.log(err);
                         res.json(false);
                     });
+                }
+
+                if(weekScores.length === 0) {
+                    connection.commit(function (err) {
+                        if (err) {
+                            return connection.rollback(function () {
+                                console.log(err);
+                                res.json(false);
+                            });
+                        }
+                        res.json({students: result, weekScores});
+                    });
+
+                    return;
                 }
 
                 const studentId = weekScores.map(w => {
@@ -49,6 +66,7 @@ function getStudentScore(res, data) {
                 connection.query(selectTaskInfoSql, (err, grades) => {
                     if (err) {
                         return connection.rollback(() => {
+                            console.log(err);
                             res.json(false);
                         });
                     }
@@ -58,6 +76,7 @@ function getStudentScore(res, data) {
                     connection.commit(function (err) {
                         if (err) {
                             return connection.rollback(function () {
+                                console.log(err);
                                 res.json(false);
                             });
                         }
@@ -102,6 +121,7 @@ function updateWeekScores(res, weekInfo) {
 
     connection.beginTransaction((err) => {
         if (err) {
+            console.log(err);
             res.json(false);
             return;
         }
@@ -109,6 +129,7 @@ function updateWeekScores(res, weekInfo) {
         connection.query(updateWeekScoreSql, (err, result) => {
             if (err) {
                 return connection.rollback(() => {
+                    console.log(err);
                     res.json(false);
                 });
             }
@@ -117,6 +138,7 @@ function updateWeekScores(res, weekInfo) {
             connection.query(updateTotalScoreSql, (err, data) => {
                 if (err) {
                     return connection.rollback(() => {
+                        console.log(err);
                         res.json(false);
                     });
                 }
@@ -124,6 +146,7 @@ function updateWeekScores(res, weekInfo) {
                 connection.commit(function (err) {
                     if (err) {
                         return connection.rollback(function () {
+                            console.log(err);
                             res.json(false);
                         });
                     }
