@@ -13,9 +13,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllScore:() => {
             dispatch({type:'GET_ALL_SCORE'})
-        },
-        searchZone:(data) => {
-            dispatch({type:'SEARCH_ZONE',data})
         }
     }
 };

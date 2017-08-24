@@ -9,13 +9,6 @@ module.exports = store => next => action => {
                 next({type:"GET_ALL_SCORE",totalScore:res.body})
             })
     }
-    else if(action.type === 'SEARCH_ZONE'){
-        request.post('/searchZone')
-            .send({zone:action.data})
-            .end((err,res)=>{
-                next({type:'SEARCH_ZONE',filterZone:res.body})
-            })
-    }
     else{
         next(action);
     }
