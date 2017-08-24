@@ -24,6 +24,10 @@ export default class Nav extends React.Component{
         browserHistory.push('/totalScore')
     }
 
+    zone() {
+        browserHistory.push('/zone');
+    }
+
     render(){
         return <div>
             <div className="logo">
@@ -36,6 +40,7 @@ export default class Nav extends React.Component{
                 <li><span className="colorA" onClick={this.taskcard.bind(this)}>任务卡管理</span></li>
                 <li><span className="colorA" onClick={this.totalScore.bind(this)}>积分榜管理</span></li>
                 <li><span className="colorA" onClick={this.taskScore.bind(this)}>任务卡成绩</span></li>
+                <li><span className="colorA" onClick={this.zone.bind(this)}>战区</span></li>
                 <li><span className="colorA">助教管理</span></li>
             </ul>
         </div>;
