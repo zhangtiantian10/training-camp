@@ -66,7 +66,7 @@ function addWeek(res, data) {
 function getAllWeeks(res) {
     const connection = require('./connection');
 
-    const selectString = `select * from week_detail`;
+    const selectString = `select id, week_code, DATE_FORMAT(start_date,'%Y-%m-%d') start_date, DATE_FORMAT(end_date,'%Y-%m-%d') end_date, card_number from week_detail`;
     connection.query(selectString, (err, result) => {
         if (err) {
         } else {
