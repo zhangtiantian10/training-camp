@@ -52,8 +52,11 @@ function filterTask(information, res) {
                     throw err;
                 });
             }
-            console.log(data);
-            res.json({tasks: data});
+            if(data.length !=0){
+                res.json({isFind:true,tasks:data});
+            }else{
+                res.json({isFind: false});
+            }
         });
     });
 }

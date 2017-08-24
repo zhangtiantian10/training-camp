@@ -7,23 +7,27 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
-    componentDidUpdate() {
-        var isUpdate = this.props.isUpdate;
-        if (isUpdate == true) {
-            alert("修改成功!");
-            this.props.getAllTask();
-        }
-
-    }
-
     componentWillUpdate(nextProps) {
         if (nextProps.isUpdate === true) {
             alert('添加成功！');
-            this.props.getAllStudent();
+            this.props.getAllTask();
         } else if (nextProps.isSaved === false) {
             alert('添加失败！');
             this.props.changeState();
         }
+
+
+    }
+
+    componentDidUpdate(){
+        if(this.props.isFind === false){
+            alert('查无此人！');
+            this.props.changeFindTaskState();
+        }else{
+            this.props.getAllTask();
+
+        }
+
     }
 
     filterData() {
@@ -161,11 +165,11 @@ class TaskScore extends Component {
                                 </div>
                                 <div className="inputPosition">
                                     <label>完成日期：</label>
-                                    <input type="text" id="finished_date" className="form-control"/>
+                                    <input type="date" id="finished_date" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>审阅日期：</label>
-                                    <input type="text" id="review_date" className="form-control"/>
+                                    <input type="date" id="review_date" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>审阅得分：</label>
@@ -173,7 +177,7 @@ class TaskScore extends Component {
                                 </div>
                                 <div className="inputPosition">
                                     <label>复审日期：</label>
-                                    <input type="text" id="upgrade_date" className="form-control"/>
+                                    <input type="date" id="upgrade_date" className="form-control"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>复审得分：</label>

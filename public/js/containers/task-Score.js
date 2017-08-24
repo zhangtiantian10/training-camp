@@ -5,7 +5,8 @@ import TaskScore from "../components/task-Score";
 const mapStateToProps = (state)=> {
     return {
         allTask: state.taskScore.allTask,
-        isUpdate: state.taskScore.isUpdate
+        isUpdate: state.taskScore.isUpdate,
+        isFind:state.taskScore.isFind
     }
 };
 
@@ -25,6 +26,9 @@ const mapDispatchToProps = (dispatch)=> {
         },
         changeState: ()=> {
             dispatch({type: "CHANGE_STATE"});
+        },
+        changeFindTaskState:()=>{
+            dispatch({type:"CHANGE_TASKsTATE"})
         }
     }
 };
