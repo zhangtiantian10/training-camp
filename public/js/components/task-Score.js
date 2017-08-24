@@ -7,34 +7,33 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
-    componentWillUpdate(nextProps) {
-        if (nextProps.isUpdate === true) {
-            alert('添加成功！');
+
+
+    componentDidUpdate() {
+        if (this.props.isFind === false) {
+            alert('查无此人！');
+            this.props.changeFindTaskState();
+        } else {
             this.props.getAllTask();
-        } else if (nextProps.isSaved === false) {
-            alert('添加失败！');
+
+        }
+
+        if (this.props.isUpdate === true) {
+            alert('修改成功！');
+            this.props.getAllTask();
+            this.props.changeState();
+        }else if(this.props.isUpdate === false){
+            alert('修改失败！');
             this.props.changeState();
         }
 
-
     }
 
-    componentDidUpdate(){
-        if(this.props.isFind === false){
-            alert('查无此人！');
-            this.props.changeFindTaskState();
-        }else{
-            this.props.getAllTask();
-
-        }
-
-    }
 
     filterData() {
         const zone = $("#zone").val();
         const team = $("#team").val();
         const studentName = $("#keyValue").val();
-        console.log(zone, team, studentName);
         this.props.filterData({zone, team, studentName});
     }
 

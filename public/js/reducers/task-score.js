@@ -1,4 +1,4 @@
-module.exports = (state = {allTask: [], isUpdate: false,isFind:""}, action)=> {
+module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
     console.log("action",action);
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
@@ -17,8 +17,8 @@ module.exports = (state = {allTask: [], isUpdate: false,isFind:""}, action)=> {
     } else if (action.type === "CHANGE_STATE") {
         state.isUpdate = false;
         return Object.assign({}, state);
-    }else if(action.type === "CHANGE_TASKsTATE"){
-        state.isFind =true;
+    }else if(action.type === "CHANGE_TASKSTATE"){
+        state.isFind=true;
         return Object.assign({}, state);
     }
     else {
