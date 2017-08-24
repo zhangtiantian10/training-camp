@@ -11,7 +11,7 @@ class TaskScore extends Component {
         if (nextProps.isUpdate === true) {
             alert('添加成功！');
             this.props.getAllTask();
-        } else if (nextProps.isSaved === false) {
+        } else if (nextProps.isUpdate === false) {
             alert('添加失败！');
             this.props.changeState();
         }
