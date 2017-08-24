@@ -22,7 +22,7 @@ export default store => next => action => {
         request.post('/filterTask')
             .send({data:action.data})
             .end((err,res)=>{
-                next({type:"FILTER_TASK",fliterTask:res.body.tasks});
+                next({type:"FILTER_TASK", fliterTask:res.body.tasks});
             })
     }
     else{

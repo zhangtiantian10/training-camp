@@ -4,29 +4,29 @@ import TaskScore from "../components/task-Score";
 
 const mapStateToProps = (state)=> {
     return {
-          allTask:state.taskScore.allTask,
-          isUpdate:state.taskScore.isUpdate
+        allTask: state.taskScore.allTask,
+        isUpdate: state.taskScore.isUpdate
     }
 };
 
-const mapDispatchToProps=(dispatch)=>{
+const mapDispatchToProps = (dispatch)=> {
     return {
         selectData: (data)=> {
             dispatch({type: "SELECT_DATA", data});
         },
-        getAllTask:()=>{
-            dispatch({type:"GETALL_TASK"});
+        getAllTask: ()=> {
+            dispatch({type: "GETALL_TASK"});
         },
-        onModify:(data)=>{
-            dispatch({type:"MODIFY_TASK",data});
+        onModify: (data)=> {
+            dispatch({type: "MODIFY_TASK", data});
         },
-        filterData:(data)=>{
-            dispatch({type:"FILTER_TASK",data});
+        filterData: (data)=> {
+            dispatch({type: "FILTER_TASK", data});
         },
-        changeState:()=>{
-            dispatch({type:"CHANGE_STATE"});
+        changeState: ()=> {
+            dispatch({type: "CHANGE_STATE"});
         }
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(TaskScore);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskScore);

@@ -19,7 +19,7 @@ import WeekScore from './containers/Week-Score';
 import weekMiddle from './middlewares/week';
 import weekScoreMiddle from './middlewares/week-score';
 
-const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle, taskcardMiddleware, getAllTaskcardMiddleware, weekScoreMiddle,taskScoreMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle, taskcardMiddleware, getAllTaskcardMiddleware, weekScoreMiddle, taskScoreMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(reducers);
 

@@ -7,7 +7,7 @@ export default store => next => action => {
                 name: action.data.name,
                 school: action.data.school,
                 city: action.data.city,
-                team:action.data.team,
+                team: action.data.team,
                 major: action.data.major,
                 gender: action.data.gender,
                 grade: action.data.grade,
@@ -33,6 +33,6 @@ export default store => next => action => {
             .end((err, res)=> {
                 next({type: "MODIFY_STUDENT", isModify: res.body.isModify})
             })
-    }else
+    } else
         next(action);
 };

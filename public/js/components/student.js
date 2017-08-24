@@ -7,15 +7,15 @@ class Student extends Component {
         if (nextProps.isSaved === true) {
             alert('添加成功！');
             this.props.getAllStudent();
-        } else if(nextProps.isSaved === false){
+        } else if (nextProps.isSaved === false) {
             alert('添加失败！');
             this.props.changeState();
         }
 
-        if(nextProps.isModify === true) {
+        if (nextProps.isModify === true) {
             alert('修改成功！');
             this.props.getAllStudent();
-        } else if(nextProps.isModify === false) {
+        } else if (nextProps.isModify === false) {
             alert('修改失败！');
             this.props.changeState();
         }
@@ -126,7 +126,7 @@ class Student extends Component {
                         <th className="textStyle">操作</th>
                     </tr>
                     {
-                        this.props.allStudent.map((element,index)=> {
+                        this.props.allStudent.map((element, index)=> {
                             return <tr key={index}>
                                 <td className="textStyle">{element.id}</td>
                                 <td className="textStyle">{element.name}</td>

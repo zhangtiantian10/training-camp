@@ -7,9 +7,9 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
-    componentDidUpdate(){
-       var isUpdate=this.props.isUpdate;
-        if(isUpdate == true){
+    componentDidUpdate() {
+        var isUpdate = this.props.isUpdate;
+        if (isUpdate == true) {
             alert("修改成功!");
             this.props.getAllTask();
         }
@@ -20,7 +20,7 @@ class TaskScore extends Component {
         if (nextProps.isUpdate === true) {
             alert('添加成功！');
             this.props.getAllStudent();
-        } else if(nextProps.isSaved === false){
+        } else if (nextProps.isSaved === false) {
             alert('添加失败！');
             this.props.changeState();
         }
@@ -30,7 +30,7 @@ class TaskScore extends Component {
         const zone = $("#zone").val();
         const team = $("#team").val();
         const studentName = $("#keyValue").val();
-        console.log(zone,team,studentName)
+        console.log(zone, team, studentName);
         this.props.filterData({zone, team, studentName});
     }
 
@@ -55,7 +55,16 @@ class TaskScore extends Component {
         let review_grade = document.getElementById("review_grade").value;
         let upgrade_date = document.getElementById("upgrade_date").value;
         let upgrade_grade = document.getElementById("upgrade_grade").value;
-        this.props.onModify({taskInfo_id,student_name,task_name,finished_date,review_date,review_grade,upgrade_date,upgrade_grade});
+        this.props.onModify({
+            taskInfo_id,
+            student_name,
+            task_name,
+            finished_date,
+            review_date,
+            review_grade,
+            upgrade_date,
+            upgrade_grade
+        });
     }
 
 
