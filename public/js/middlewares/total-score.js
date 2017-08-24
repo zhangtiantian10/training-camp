@@ -5,7 +5,8 @@ module.exports = store => next => action => {
     if(action.type === "GET_ALL_SCORE"){
         request.post('/getAllTotalScore')
             .end((err,res) => {
-                next({type:"GET_ALL_SCORE",taskcards:res.body})
+                console.log(res.body);
+                next({type:"GET_ALL_SCORE",totalScore:res.body.allScore})
             })
     }else{
         next(action);
