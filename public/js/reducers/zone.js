@@ -10,7 +10,6 @@ module.exports = (state = {addSuccess: "", getSuccess: "", zones: []}, action) =
 
         return Object.assign({}, state);
     } else if(action.type === "GET_ALL_ZONES_BACK"){
-        console.log(action);
         state.zones = action.data.zones;
         state.getSuccess = action.data.getSuccess;
         state.addSuccess = "";
