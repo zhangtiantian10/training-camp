@@ -10,11 +10,21 @@ class TaskScore extends Component {
     componentDidUpdate(){
        var isUpdate=this.props.isUpdate;
         if(isUpdate == true){
+            alert("修改成功!");
             this.props.getAllTask();
         }
 
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.isUpdate === true) {
+            alert('添加成功！');
+            this.props.getAllStudent();
+        } else if(nextProps.isSaved === false){
+            alert('添加失败！');
+            this.props.changeState();
+        }
+    }
 
     filterData() {
         const zone = $("#zone").val();

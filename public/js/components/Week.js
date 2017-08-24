@@ -5,7 +5,8 @@ export default class Week extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            modifyId: 0
+            modifyId: 0,
+            preName: ""
         };
     }
 
@@ -40,11 +41,17 @@ export default class Week extends React.Component{
             alert('输入不能为空!');
             return ;
         }
+
+        if(startDate > endDate) {
+            alert('开始时间不能大于结束时间！');
+            return;
+        }
         this.props.onAdd({weekCode, startDate, endDate, cardNumber: parseInt(cardNumber)});
     }
 
-    modifyStateId(id) {
+    modifyStateId(id, name) {
         this.state.modifyId = id;
+        this.state.preName = name;
     }
 
     modifyWeek() {
@@ -54,11 +61,10 @@ export default class Week extends React.Component{
         const cardNumber = this.refs.modifyCardNumber.value;
         const id = this.state.modifyId;
 
-        this.props.modifyWeek({weekCode, startDate, endDate, cardNumber, id});
+        this.props.modifyWeek({weekCode, startDate, endDate, cardNumber, id, preName: this.state.preName});
     }
 
     render() {
-        console.log(this.props.modifySuccess);
         return <div>
             <Nav/>
             <form className="col-md-12 form-inline tablePaddingTop">
@@ -99,7 +105,7 @@ export default class Week extends React.Component{
                             <td className="textStyle">{w.end_date.split('T')[0]}</td>
                             <td className="textStyle">{w.card_number}</td>
                             <td>
-                                <button className="btn btn-default" data-toggle="modal" data-target="#myModal" onClick={this.modifyStateId.bind(this, w.id)}>修改</button>
+                                <button className="btn btn-default" data-toggle="modal" data-target="#myModal" onClick={this.modifyStateId.bind(this, w.id, w.week_code)}>修改</button>
                             </td>
                         </tr>
                     })}

@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({type: "GETALL_STUDENT"});
         },
         onSubmit: (data) => {
-            console.log(data);
             dispatch({type: "ADD_STUDENT", data});
         },
         onSearch: (data)=> {
@@ -24,6 +23,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onModify: (data)=> {
             dispatch({type: "MODIFY_STUDENT", data});
+        },
+        changeState: () => {
+            dispatch({type: "CHANGE_STATE"});
         }
     }
 };

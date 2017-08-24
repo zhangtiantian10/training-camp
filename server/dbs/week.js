@@ -5,13 +5,13 @@ function addWeek(res, data) {
     connection.beginTransaction((err) => {
         if (err) {
             res.json(false);
-            return ;
+            return;
         }
         connection.query(insetString, (err, result) => {
-            if(err) {
+            if (err) {
                 return connection.rollback(() => {
                     res.json(false);
-                    return ;
+                    return;
                 });
             }
 
@@ -19,7 +19,7 @@ function addWeek(res, data) {
                 if (err) {
                     return connection.rollback(() => {
                         res.json(false);
-                        return ;
+                        return;
                     });
                 }
 
@@ -29,22 +29,33 @@ function addWeek(res, data) {
                     return ` (${s.id}, ${result.insertId})`
                 }).join(',');
 
-                connection.query(insertScore, (err, data) => {
+                connection.query(insertScore, (err, insertScore) => {
                     if (err) {
                         return connection.rollback(() => {
                             res.json(false);
-                            return ;
+                            return;
                         });
                     }
-                    connection.commit(function(err) {
+
+                    const insertWeekTotal = `ALTER TABLE total_score add \`${data.weekCode}\` DOUBLE(5,2) NULL DEFAULT '0.00' ;`;
+                    connection.query(insertWeekTotal, (err, insert) => {
                         if (err) {
-                            return connection.rollback(function() {
+                            return connection.rollback(() => {
                                 console.log(err);
                                 res.json(false);
                                 return;
                             });
                         }
-                        res.json(true);
+                        connection.commit(function (err) {
+                            if (err) {
+                                return connection.rollback(function () {
+                                    console.log(err);
+                                    res.json(false);
+                                    return;
+                                });
+                            }
+                            res.json(true);
+                        });
                     });
                 });
             });
@@ -67,14 +78,40 @@ function getAllWeeks(res) {
 function modifyWeek(res, week) {
     const connection = require('./connection');
 
-    const updateString = `update week_detail set week_code='${week.weekCode}', start_date='${week.startDate}', end_date='${week.endDate}', card_number=${week.cardNumber} where id=${week.id}`;
-    connection.query(updateString, (err, result) => {
-        if (err) {
+    const updateWeekDetailSql = `update week_detail set week_code='${week.weekCode}', start_date='${week.startDate}', end_date='${week.endDate}', card_number=${week.cardNumber} where id=${week.id}`;
+    const updateTotalScoreSql = `ALTER TABLE total_score CHANGE COLUMN \`${week.preName}\` \`${week.weekCode}\` DOUBLE(5,2) NULL DEFAULT '0.00' ;`
+    connection.beginTransaction((err) => {
+        if(err) {
             res.json(false);
-        } else {
-            res.json(true);
+            return;
         }
-    })
+
+        connection.query(updateWeekDetailSql, (err, result) => {
+            if (err) {
+                connection.rollback(() => {
+                    res.json(false);
+                });
+            } else {
+
+                connection.query(updateTotalScoreSql, (err, result) => {
+                    if (err) {
+                        return connection.rollback(() => {
+                            res.json(false);
+                        });
+                    }
+
+                    connection.commit((err) => {
+                        if (err) {
+                            return connection.rollback(() => {
+                                res.json(false);
+                            });
+                        }
+                        res.json(true);
+                    })
+                })
+            }
+        });
+    });
 }
 
 module.exports = {

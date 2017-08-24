@@ -22,6 +22,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         filterData:(data)=>{
             dispatch({type:"FILTER_TASK",data});
+        },
+        changeState:()=>{
+            dispatch({type:"CHANGE_STATE"});
         }
     }
 };

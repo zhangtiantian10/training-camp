@@ -3,21 +3,21 @@ import Nav from '../containers/nav'
 
 class Student extends Component {
 
-
-    componentDidUpdate() {
-        var isSaved = this.props.isSaved;
-        if (isSaved) {
+    componentWillUpdate(nextProps) {
+        if (nextProps.isSaved === true) {
+            alert('添加成功！');
             this.props.getAllStudent();
-            return 0;
-        }
-        var isRemoved = this.props.isRemoved;
-        if (isRemoved) {
-            this.props.getAllStudent();
+        } else if(nextProps.isSaved === false){
+            alert('添加失败！');
+            this.props.changeState();
         }
 
-        var isModify = this.props.isModify;
-        if (isModify) {
+        if(nextProps.isModify === true) {
+            alert('修改成功！');
             this.props.getAllStudent();
+        } else if(nextProps.isModify === false) {
+            alert('修改失败！');
+            this.props.changeState();
         }
     }
 
