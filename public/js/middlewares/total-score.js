@@ -6,9 +6,10 @@ module.exports = store => next => action => {
         request.post('/getAllTotalScore')
             .end((err,res) => {
                 console.log(res.body);
-                next({type:"GET_ALL_SCORE",totalScore:res.body.allScore})
+                next({type:"GET_ALL_SCORE",totalScore:res.body})
             })
-    }else{
+    }
+    else{
         next(action);
     }
 }

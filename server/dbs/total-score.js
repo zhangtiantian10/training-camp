@@ -52,8 +52,7 @@ function getAllScore(res) {
                                     res.json(false);
                                 });
                             }
-                            res.json({allScore:setArr})
-
+                            res.json({allScore:setArr,keyArr:Object.keys(setArr[0])})
                         });
                     })
                 })
@@ -62,4 +61,8 @@ function getAllScore(res) {
     });
 }
 
-module.exports = getAllScore;
+
+
+module.exports = {
+    getAllScore,
+};
