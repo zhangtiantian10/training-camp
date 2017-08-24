@@ -6,4 +6,8 @@ router.post('/team', (req, res) => {
     Dao.insertTeam(res, req.body);
 });
 
+router.get('/teams', (req, res) => {
+    Dao.getAllTeams(res);
+})
+
 module.exports = router;

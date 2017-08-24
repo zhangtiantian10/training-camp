@@ -70,6 +70,22 @@ function insertTeam(res, team) {
     });
 }
 
+function getAllTeams(res) {
+    const connection = require('./connection');
+
+    const selectTeamSql = `select * from teams`;
+
+    connection.query(selectTeamSql, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json(false);
+        } else {
+            res.json(result);
+        }
+    })
+}
+
 module.exports = {
-    insertTeam
+    insertTeam,
+    getAllTeams
 }

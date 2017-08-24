@@ -5,7 +5,8 @@ const mapStateToProps = (state) => {
     return {
         zones: state.zone.zones,
         nameExist: state.team.nameExist,
-        addSuccess: state.team.addSuccess
+        addSuccess: state.team.addSuccess,
+        teams: state.team.teams
     }
 };
 
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         cancelState: () => {
             dispatch({type: 'CANCEL_STATE'});
+        },
+        getAllTeams: () => {
+            dispatch({type: 'GET_ALL_TEAMS'});
         }
     }
 };
