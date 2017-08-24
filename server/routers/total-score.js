@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const getAllScore = require('../dbs/total-score');
+const totalScore = require('../dbs/total-score');
 
 router.post('/getAllTotalScore',(req,res)=>{
-    getAllScore(res);
+    totalScore.getAllScore(res);
 });
+
+router.post('/searchZone',(req,res) => {
+    console.log(req.body.zone)
+    totalScore.searchZone(res,req.body.zone)
+})
 
 module.exports = router;

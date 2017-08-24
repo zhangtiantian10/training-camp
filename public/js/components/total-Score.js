@@ -8,6 +8,7 @@ export default class TotalScore extends React.Component{
 
     search(){
         let zone = $("#zone").val();
+        console.log(zone)
         this.props.searchZone({zone});
     }
 
@@ -34,19 +35,46 @@ export default class TotalScore extends React.Component{
                 <table className="table table-bordered">
                     <thead>
                     <tr className="active">
-                        <td>ID</td>
-                        <td>姓名</td>
-                        <td>总成绩</td>
+                        {
+                            this.props.keyArr.map((key,index)=>{
+                                return <td key={index}>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    <td key={index}>{key}</td>
+                                    </td>
+
+
+                            })
+                        }
                     </tr>
                     </thead>
                     <tbody>
                     {
                         this.props.allTotalScore.map((ele, index)=> {
-                            return <tr key={index}>
-                                <td>{ele.id}</td>
-                                <td>{ele.name}</td>
-                                <td>{ele.total_score}</td>
+                            return <tr>
+                                    {
+                                        this.props.keyArr.map((key,index)=>{
+                                            return <td key={index}>
+                                                    <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                <td key={index}>{ele[key]}</td>
+                                                </td>
+                                        })
+                                    }
                             </tr>
+
                         })
                     }
                     </tbody>
