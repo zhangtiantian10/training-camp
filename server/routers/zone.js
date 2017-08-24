@@ -6,4 +6,8 @@ router.post('/zone', (req, res) => {
     Dao.addZone(res, req.body);
 });
 
+router.get('/zones', (req, res) => {
+    Dao.getAllZones(res);
+});
+
 module.exports = router;

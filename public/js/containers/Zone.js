@@ -3,7 +3,9 @@ import Zone from '../components/Zone';
 
 const mapStateToProps = (state) => {
     return {
-        addSuccess: state.zone.addSuccess
+        addSuccess: state.zone.addSuccess,
+        zones: state.zone.zones,
+        getSuccess: state.zone.getSuccess
     };
 };
 
@@ -12,8 +14,11 @@ const mapDispatchToProps = (dispatch) => {
         addZone: (zone) => {
             dispatch({type: 'ADD_ZONE', zone});
         },
-        changeAddState: () => {
-            dispatch({type: "CHANGE_ADD_STATE"})
+        changeSuccess: () => {
+            dispatch({type: "CHANG_STATE"})
+        },
+        getAllZones: () => {
+            dispatch({type: "GET_ALL_ZONES"});
         }
     };
 };
