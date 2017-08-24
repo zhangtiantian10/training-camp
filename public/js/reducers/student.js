@@ -7,10 +7,7 @@ module.exports = (state = {isSaved: "", allStudent: [], isRemoved: false, isModi
         state.isSaved = "";
         state.isModify = "";
         return Object.assign({}, state);
-    } else if (action.type === "REMOVE_STUDENT") {
-        state.isRemoved = action.isRemoved;
-        return Object.assign({}, state);
-    } else if (action.type === "SEARCH_ONE") {
+    }else if (action.type === "SEARCH_ONE") {
         state.allStudent = action.oneStudent;
         return Object.assign({}, state);
     } else if (action.type === "MODIFY_STUDENT") {
@@ -19,7 +16,6 @@ module.exports = (state = {isSaved: "", allStudent: [], isRemoved: false, isModi
     } else if(action.type === "CHANGE_STATE") {
         state.isModify = "";
         state.isSaved = "";
-
         return Object.assign({}, state);
     }
     else {

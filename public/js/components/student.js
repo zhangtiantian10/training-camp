@@ -7,15 +7,15 @@ class Student extends Component {
         if (nextProps.isSaved === true) {
             alert('添加成功！');
             this.props.getAllStudent();
-        } else if(nextProps.isSaved === false){
+        } else if (nextProps.isSaved === false) {
             alert('添加失败！');
             this.props.changeState();
         }
 
-        if(nextProps.isModify === true) {
+        if (nextProps.isModify === true) {
             alert('修改成功！');
             this.props.getAllStudent();
-        } else if(nextProps.isModify === false) {
+        } else if (nextProps.isModify === false) {
             alert('修改失败！');
             this.props.changeState();
         }
@@ -23,7 +23,6 @@ class Student extends Component {
 
     componentWillMount() {
         this.props.getAllStudent();
-
     }
 
     onSubmit() {
@@ -49,11 +48,6 @@ class Student extends Component {
         document.getElementById("grade").value = "";
         document.getElementById("gender").value = "";
 
-    }
-
-
-    onRemove(id) {
-        this.props.onRemove(id);
     }
 
     onSearch() {
@@ -129,11 +123,11 @@ class Student extends Component {
                         <th className="textStyle">专业</th>
                         <th className="textStyle">年级</th>
                         <th className="textStyle">性别</th>
-                        <th className="textStyle" colSpan="2">操作</th>
+                        <th className="textStyle">操作</th>
                     </tr>
                     {
-                        this.props.allStudent.map((element, i)=> {
-                            return <tr key={i}>
+                        this.props.allStudent.map((element, index)=> {
+                            return <tr key={index}>
                                 <td className="textStyle">{element.id}</td>
                                 <td className="textStyle">{element.name}</td>
                                 <td className="textStyle">{element.zone}</td>
@@ -147,12 +141,6 @@ class Student extends Component {
                                     <button type="button" className="btn btn-default"
                                             data-toggle="modal" data-target="#secondModal"
                                             onClick={this.insertValue.bind(this, element)}>修改
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" className="btn btn-default"
-                                            onClick={this.onRemove.bind(this, element.id)}>
-                                        删除
                                     </button>
                                 </td>
                             </tr>

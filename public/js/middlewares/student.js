@@ -7,7 +7,7 @@ export default store => next => action => {
                 name: action.data.name,
                 school: action.data.school,
                 city: action.data.city,
-                team:action.data.team,
+                team: action.data.team,
                 major: action.data.major,
                 gender: action.data.gender,
                 grade: action.data.grade,
@@ -21,12 +21,6 @@ export default store => next => action => {
             .end((err, res)=> {
                 next({type: "GETALL_STUDENT", data: res.body.getAll});
             })
-    } else if (action.type === "REMOVE_STUDENT") {
-        request.post('/removeStudent')
-            .send({student_id: action.data})
-            .end((err, res)=> {
-                next({type: "REMOVE_STUDENT", isRemoved: res.body.isRemoved});
-            })
     } else if (action.type === "SEARCH_ONE") {
         request.post('/searchOne')
             .send({search_name: action.data})
@@ -39,6 +33,6 @@ export default store => next => action => {
             .end((err, res)=> {
                 next({type: "MODIFY_STUDENT", isModify: res.body.isModify})
             })
-    }else
+    } else
         next(action);
 };

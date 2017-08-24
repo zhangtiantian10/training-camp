@@ -9,6 +9,7 @@ import TaskCard from './containers/taskCard';
 import TaskScore from "./containers/task-Score";
 import studentMiddleware from './middlewares/student';
 import taskcardMiddleware from './middlewares/taskCard';
+import taskScoreMiddleware from "./middlewares/task-Score"
 import getAllTaskcardMiddleware from './middlewares/getAllTadkcard';
 import Week from './containers/Week';
 import WeekScore from './containers/Week-Score';
@@ -18,7 +19,11 @@ import totalScoreMiddleware from './middlewares/total-score';
 import weekMiddle from './middlewares/week';
 import weekScoreMiddle from './middlewares/week-score';
 
+<<<<<<< HEAD
 const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle, taskcardMiddleware, getAllTaskcardMiddleware, weekScoreMiddle,totalScoreMiddleware)(createStore);
+=======
+const createStoreWithMiddleware = applyMiddleware(studentMiddleware, weekMiddle, taskcardMiddleware, getAllTaskcardMiddleware, weekScoreMiddle, taskScoreMiddleware)(createStore);
+>>>>>>> 19663664ef86cdb0fc5ef4a15d278cfffd04c351
 
 const store = createStoreWithMiddleware(reducers);
 
