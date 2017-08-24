@@ -8,6 +8,7 @@ import weekScore from './week-score';
 import taskScore from './task-score';
 import zone from './zone';
 import totalScore from './total-score';
+import team from './team';
 
 export default combineReducers({
     student,
@@ -17,5 +18,6 @@ export default combineReducers({
     weekScore,
     taskScore,
     zone,
-    totalScore
+    totalScore,
+    team
 });
