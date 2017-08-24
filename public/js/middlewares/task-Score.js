@@ -19,11 +19,10 @@ export default store => next => action => {
                 next({type:"MODIFY_TASK",isUpdate:res.body.isUpdate});
             })
     }else if(action.type === "FILTER_TASK"){
-        console.log(action.data);
         request.post('/filterTask')
             .send({data:action.data})
-            .end((err,result)=>{
-                next({type:"FILTER_TASK"});
+            .end((err,res)=>{
+                next({type:"FILTER_TASK",fliterTask:res.body.tasks});
             })
     }
     else{

@@ -14,4 +14,9 @@ router.post('/modifyTask',(req,res)=>{
     taskScore.modifyTask(req.body.data,res);
 });
 
+router.post('/filterTask',(req,res)=>{
+    let information=req.body.data;
+    taskScore.filterTask(information,res);
+});
+
 module.exports=router;
