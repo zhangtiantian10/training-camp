@@ -3,7 +3,7 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
         state.isFind = "";
-        state.isUpdate = ""
+        state.isUpdate = "";
         return Object.assign({}, state);
     } else if (action.type === "MODIFY_TASK") {
         state.isUpdate = action.isUpdate;
@@ -18,6 +18,7 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
     } else if (action.type === "CHANGE_STATE") {
         state.isUpdate = "";
         return Object.assign({}, state);
+
     }else if(action.type === "CHANGE_TASK_STATE"){
         state.isFind ="";
         return Object.assign({}, state);

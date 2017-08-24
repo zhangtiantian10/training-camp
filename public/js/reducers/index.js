@@ -7,6 +7,7 @@ import getAllTaskcard from './getAllTaskcard';
 import weekScore from './week-score';
 import taskScore from './task-score';
 import zone from './zone';
+import totalScore from './total-score';
 
 export default combineReducers({
     student,
@@ -15,5 +16,6 @@ export default combineReducers({
     getAllTaskcard,
     weekScore,
     taskScore,
-    zone
+    zone,
+    totalScore
 });

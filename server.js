@@ -12,6 +12,7 @@ const getAllTaskcard = require('./server/routers/getAllTaskcard');
 const weekScore = require('./server/routers/week-score');
 const taskScore=require('./server/routers/taskScore');
 const zone = require('./server/routers/zone');
+const totalScore = require('./server/routers/total-score');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -26,6 +27,7 @@ app.use('/',getAllTaskcard);
 app.use('/', weekScore);
 app.use('/',taskScore);
 app.use('/', zone);
+app.use('/',totalScore);
 
 app.get("*", function (req, res) {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));

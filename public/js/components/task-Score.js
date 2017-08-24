@@ -26,11 +26,11 @@ class TaskScore extends Component {
         }
     }
 
+
     filterData() {
         const zone = $("#zone").val();
         const team = $("#team").val();
         const studentName = $("#keyValue").val();
-        console.log(zone, team, studentName);
         this.props.filterData({zone, team, studentName});
     }
 
