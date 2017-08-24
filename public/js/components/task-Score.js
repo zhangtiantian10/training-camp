@@ -7,26 +7,23 @@ class TaskScore extends Component {
         this.props.getAllTask();
     }
 
-
-
-    componentDidUpdate() {
-        if (this.props.isFind === false) {
-            alert('查无此人！');
-            this.props.changeFindTaskState();
-        } else {
+    componentWillUpdate(nextProps) {
+        if (nextProps.isUpdate === true) {
+            alert('添加成功！');
             this.props.getAllTask();
-
-        }
-
-        if (this.props.isUpdate === true) {
-            alert('修改成功！');
-            this.props.getAllTask();
-            this.props.changeState();
-        }else if(this.props.isUpdate === false){
-            alert('修改失败！');
+        } else if (nextProps.isUpdate === false) {
+            alert('添加失败！');
             this.props.changeState();
         }
 
+
+    }
+
+    componentDidUpdate(){
+        if(this.props.isFind === false){
+            alert('此人不在该战区或该组！');
+            this.props.getAllTask();
+        }
     }
 
 
