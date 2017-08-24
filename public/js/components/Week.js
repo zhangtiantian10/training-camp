@@ -61,6 +61,15 @@ export default class Week extends React.Component{
         const cardNumber = this.refs.modifyCardNumber.value;
         const id = this.state.modifyId;
 
+        if(!weekCode || !startDate || !endDate || !cardNumber) {
+            alert('输入不能为空!');
+            return ;
+        }
+
+        if(startDate > endDate) {
+            alert('开始时间不能大于结束时间！');
+            return;
+        }
         this.props.modifyWeek({weekCode, startDate, endDate, cardNumber, id, preName: this.state.preName});
     }
 
@@ -101,8 +110,8 @@ export default class Week extends React.Component{
                     {this.props.weeks.map((w, i) => {
                         return <tr key={i} id={`${w.id}`}>
                             <td className="textStyle">{w.week_code}</td>
-                            <td className="textStyle">{w.start_date.split('T')[0]}</td>
-                            <td className="textStyle">{w.end_date.split('T')[0]}</td>
+                            <td className="textStyle">{w.start_date}</td>
+                            <td className="textStyle">{w.end_date}</td>
                             <td className="textStyle">{w.card_number}</td>
                             <td>
                                 <button className="btn btn-default" data-toggle="modal" data-target="#myModal" onClick={this.modifyStateId.bind(this, w.id, w.week_code)}>修改</button>
