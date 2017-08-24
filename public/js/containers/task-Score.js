@@ -26,10 +26,7 @@ const mapDispatchToProps = (dispatch)=> {
         },
         changeState: ()=> {
             dispatch({type: "CHANGE_STATE"});
-        }/*,
-        changeFindTaskState:()=>{
-            dispatch({type:"CHANGE_TASK_STATE"})
-        }*/
+        }
     }
 };
 

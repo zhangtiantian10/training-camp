@@ -19,11 +19,7 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
         state.isUpdate = "";
         return Object.assign({}, state);
 
-    }else if(action.type === "CHANGE_TASK_STATE"){
-        state.isFind ="";
-        return Object.assign({}, state);
-    }
-    else {
+    }else {
         return state;
     }
 };
