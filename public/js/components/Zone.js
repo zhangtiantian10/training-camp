@@ -7,7 +7,7 @@ export default class Zone extends React.Component {
             alert('添加成功！');
             this.props.getAllZones();
         } else if(nextProps.addSuccess === false) {
-            alert('添加失败!');
+            alert('添加失败,战区名不能重复！');
             this.props.changeSuccess();
         }
 
