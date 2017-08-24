@@ -1,5 +1,4 @@
-module.exports = (state = {allTask: [], isUpdate: "",isFind:"",allZone:[]}, action)=> {
-    console.log("action",action);
+module.exports = (state = {allTask: [], isUpdate: "", isFind: "", allZone: [], allTeam: []}, action)=> {
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
         state.isFind = "";
@@ -9,18 +8,21 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:"",allZone:[]}, acti
         state.isUpdate = action.isUpdate;
         return Object.assign({}, state);
     } else if (action.type === "FILTER_TASK") {
-        if(action.fliterTask.isFind){
-            state.allTask=action.fliterTask.tasks;
-        }else{
-            state.isFind=action.fliterTask.isFind;
+        if (action.fliterTask.isFind) {
+            state.allTask = action.fliterTask.tasks;
+        } else {
+            state.isFind = action.fliterTask.isFind;
         }
         return Object.assign({}, state);
     } else if (action.type === "CHANGE_STATE") {
         state.isUpdate = "";
         return Object.assign({}, state);
 
-    }else if(action.type === "GET_ALL_ZONE"){
-        state.allZone=action.data;
+    } else if (action.type === "GET_ALL_ZONE") {
+        state.allZone = action.data;
+        return Object.assign({}, state);
+    } else if (action.type === "GET_ALL_TEAM") {
+        state.allTeam = action.data;
         return Object.assign({}, state);
     }
     else {

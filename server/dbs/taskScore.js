@@ -16,7 +16,7 @@ function selectAllTaskcard(res) {
 function modifyTask(information, res) {
     const connection = require('./connection');
     let updateSql = 'UPDATE tasks_info SET';
-    if(information.upgrade_date === '') {
+    if (information.upgrade_date === '') {
         updateSql += ` finished_date="${information.finished_date}", review_date="${information.review_date}", review_grade="${information.review_grade}" WHERE id=${information.taskInfo_id}`;
     } else {
         updateSql += ` finished_date="${information.finished_date}", review_date="${information.review_date}", review_grade="${information.review_grade}", upgrade_date="${information.upgrade_date}", upgrade_grade="${information.upgrade_grade}" WHERE id=${information.taskInfo_id}`;
@@ -79,19 +79,37 @@ function filterTask(information, res) {
 
 function getAllZone(res) {
     const connection = require('./connection');
-    let selectSql=`select zone from student`;
-    connection.query(selectSql,(err,result)=>{
+    let selectSql = `select zone from student`;
+    connection.query(selectSql, (err, result)=> {
         if (err) {
             return connection.rollback(function () {
                 throw err;
             });
         }
-        let newArray=[];
-        for(let value of result){
+        let newArray = [];
+        for (let value of result) {
             newArray.push(value.zone);
         }
-        newArray=Array.from(new Set(newArray));
-        res.json({data:newArray});
+        newArray = Array.from(new Set(newArray));
+        res.json({data: newArray});
+    });
+}
+
+function getAllTeam(res) {
+    const connection = require('./connection');
+    let selectSql = `select team from student`;
+    connection.query(selectSql, (err, result)=> {
+        if (err) {
+            return connection.rollback(function () {
+                throw err;
+            });
+        }
+        let newArray = [];
+        for (let value of result) {
+            newArray.push(value.team);
+        }
+        newArray = Array.from(new Set(newArray));
+        res.json({data: newArray});
     });
 }
 
@@ -99,5 +117,6 @@ module.exports = {
     selectAllTaskcard,
     modifyTask,
     filterTask,
-    getAllZone
+    getAllZone,
+    getAllTeam
 };

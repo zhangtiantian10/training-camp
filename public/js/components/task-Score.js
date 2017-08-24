@@ -6,6 +6,7 @@ class TaskScore extends Component {
     componentWillMount() {
         this.props.getAllTask();
         this.props.getAllZone();
+        this.props.getAllTeam();
     }
 
     componentWillUpdate(nextProps) {
@@ -86,11 +87,13 @@ class TaskScore extends Component {
                 </div>
                 <div className="col-md-2">
                     <select className="form-control" id="team">
-                        <option value="1" className="textStyle">一组</option>
-                        <option value="2" className="textStyle">二组</option>
-                        <option value="3" className="textStyle">三组</option>
-                        <option value="4" className="textStyle">四组</option>
-                        <option value="5" className="textStyle">五组</option>
+                        {
+                            this.props.allTeam.map((element,index)=>{
+                                return   <option value={element} className="textStyle" key={index}>
+                                    {element}
+                                </option>
+                            })
+                        }
                     </select>
                 </div>
                 <div className="col-md-2">
