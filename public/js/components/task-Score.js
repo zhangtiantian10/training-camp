@@ -21,13 +21,9 @@ class TaskScore extends Component {
 
     componentDidUpdate(){
         if(this.props.isFind === false){
-            alert('查无此人！');
-            this.props.changeFindTaskState();
-        }else{
+            alert('此人不在该战区或该组！');
             this.props.getAllTask();
-
         }
-
     }
 
     filterData() {
