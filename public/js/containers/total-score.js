@@ -2,9 +2,9 @@ import {connect} from 'react-redux';
 import TotalScore from '../components/total-Score';
 
 const mapStateToProps = (state) => {
-    console.log('allScore',state.totalScore.allScore);
+    console.log('allScore',state.totalScore.totalScore);
     return {
-        allTotalScore:state.totalScore.allScore
+        allTotalScore:state.totalScore.totalScore
     }
 };
 
