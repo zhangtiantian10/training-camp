@@ -19,4 +19,8 @@ router.post('/filterTask', (req, res)=> {
     taskScore.filterTask(information, res);
 });
 
+router.post('/getAllZone',(req,res)=>{
+    taskScore.getAllZone(res);
+});
+
 module.exports = router;

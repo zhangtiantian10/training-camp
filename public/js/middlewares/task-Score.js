@@ -24,6 +24,11 @@ export default store => next => action => {
             .end((err,res)=>{
                 next({type:"FILTER_TASK", fliterTask:res.body});
             })
+    }else if(action.type === "GET_ALL_ZONE"){
+        request.post('/getAllZone')
+            .end((err,res)=>{
+                next({type:"GET_ALL_ZONE",data:res.body.data});
+            });
     }
     else{
         next(action);

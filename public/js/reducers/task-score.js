@@ -1,4 +1,4 @@
-module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
+module.exports = (state = {allTask: [], isUpdate: "",isFind:"",allZone:[]}, action)=> {
     console.log("action",action);
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
@@ -19,7 +19,11 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
         state.isUpdate = "";
         return Object.assign({}, state);
 
-    }else {
+    }else if(action.type === "GET_ALL_ZONE"){
+        state.allZone=action.data;
+        return Object.assign({}, state);
+    }
+    else {
         return state;
     }
 };

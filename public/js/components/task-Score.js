@@ -5,6 +5,7 @@ class TaskScore extends Component {
 
     componentWillMount() {
         this.props.getAllTask();
+        this.props.getAllZone();
     }
 
     componentWillUpdate(nextProps) {
@@ -74,10 +75,13 @@ class TaskScore extends Component {
             <div className="col-md-offset-3 tablePaddingTop">
                 <div className="col-md-2">
                     <select className="form-control textStyle" id="zone">
-                        <option value="001" className="textStyle">001战区</option>
-                        <option value="002" className="textStyle">002战区</option>
-                        <option value="003" className="textStyle">003战区</option>
-                        <option value="004" className="textStyle">004战区</option>
+                        {
+                            this.props.allZone.map((element,index)=>{
+                                return   <option value={element} className="textStyle" key={index}>
+                                  {element}
+                                </option>
+                            })
+                        }
                     </select>
                 </div>
                 <div className="col-md-2">

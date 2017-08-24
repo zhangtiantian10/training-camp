@@ -3,10 +3,12 @@ import TaskScore from "../components/task-Score";
 
 
 const mapStateToProps = (state)=> {
+    console.log(state.taskScore.allZone);
     return {
         allTask: state.taskScore.allTask,
         isUpdate: state.taskScore.isUpdate,
-        isFind:state.taskScore.isFind
+        isFind:state.taskScore.isFind,
+        allZone:state.taskScore.allZone
     }
 };
 
@@ -26,6 +28,9 @@ const mapDispatchToProps = (dispatch)=> {
         },
         changeState: ()=> {
             dispatch({type: "CHANGE_STATE"});
+        },
+        getAllZone:()=>{
+            dispatch({type:"GET_ALL_ZONE"});
         }
     }
 };

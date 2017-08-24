@@ -77,9 +77,27 @@ function filterTask(information, res) {
     });
 }
 
+function getAllZone(res) {
+    const connection = require('./connection');
+    let selectSql=`select zone from student`;
+    connection.query(selectSql,(err,result)=>{
+        if (err) {
+            return connection.rollback(function () {
+                throw err;
+            });
+        }
+        let newArray=[];
+        for(let value of result){
+            newArray.push(value.zone);
+        }
+        newArray=Array.from(new Set(newArray));
+        res.json({data:newArray});
+    });
+}
 
 module.exports = {
     selectAllTaskcard,
     modifyTask,
-    filterTask
+    filterTask,
+    getAllZone
 };
