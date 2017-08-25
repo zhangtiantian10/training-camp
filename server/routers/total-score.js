@@ -6,4 +6,8 @@ router.post('/getAllTotalScore',(req,res)=>{
     totalScore.getAllScore(res);
 });
 
+router.post('/selectTotalScore', (req, res) => {
+    totalScore.selectTotalScore(res, req.body);
+});
+
 module.exports = router;
