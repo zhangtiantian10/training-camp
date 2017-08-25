@@ -23,12 +23,13 @@ class Student extends Component {
 
     componentWillMount() {
         this.props.getAllStudent();
+        this.props.getAllZones();
     }
 
     onSubmit() {
         let name = document.getElementById("name").value;
-        let zone = document.getElementById("zone").value;
-        let team = document.getElementById("team").value;
+        let zone = $("#zone").val();
+        let team = $("#team").val();
         let city = document.getElementById("city").value;
         let school = document.getElementById("school").value;
         let major = document.getElementById("major").value;
@@ -40,8 +41,8 @@ class Student extends Component {
             this.props.onSubmit({name, zone, team, city, school, major, grade, gender});
         }
         document.getElementById("name").value = "";
-        document.getElementById("zone").value = "";
-        document.getElementById("team").value = "";
+        $("#zone").val('');
+        $("#team").val('');
         document.getElementById("city").value = "";
         document.getElementById("school").value = "";
         document.getElementById("major").value = "";
@@ -59,8 +60,8 @@ class Student extends Component {
         console.log(information);
         document.getElementById("modify_id").value = information.id;
         document.getElementById("modify_name").value = information.name;
-        document.getElementById("modify_zone").value = information.zone;
-        document.getElementById("modify_team").value = information.team;
+        $("#modify_zone").val("");
+        $("#modify_team").val("");
         document.getElementById("modify_city").value = information.city;
         document.getElementById("modify_school").value = information.school;
         document.getElementById("modify_major").value = information.major;
@@ -85,13 +86,19 @@ class Student extends Component {
         }
         document.getElementById("modify_id").value = "";
         document.getElementById("modify_name").value = "";
-        document.getElementById("modify_zone").value = "";
-        document.getElementById("modify_team").value = "";
+        $("#modify_zone").val('');
+        $("#modify_team").val('');
         document.getElementById("modify_city").value = "";
         document.getElementById("modify_school").value = "";
         document.getElementById("modify_major").value = "";
         document.getElementById("modify_grade").value = "";
         document.getElementById("modify_gender").value = "";
+    }
+
+    selectTeamForZone() {
+        const zoneName = $('#zone').val();
+
+        this.props.selectTeam(zoneName);
     }
 
     render() {
@@ -163,11 +170,23 @@ class Student extends Component {
                                 </div>
                                 <div className="inputPosition">
                                     <label>战区：</label>
-                                    <input type="text" className="form-control" id="zone"/>
+                                    <select className="form-control" id="zone"
+                                            onChange={this.selectTeamForZone.bind(this)}>
+                                        <option value="" className="textStyle">请选择</option>
+                                        {this.props.zones.map((z, i) => {
+                                            return <option key={i} className="textStyle"
+                                                           value={z.name}>{z.name}</option>
+                                        })}
+                                    </select>
                                 </div>
                                 <div className="inputPosition">
                                     <label>组号：</label>
-                                    <input type="text" className="form-control" id="team"/>
+                                    <select className="form-control" id="team">
+                                        <option value="" className="textStyle">请选择</option>
+                                        {this.props.teams.map((t, i) => {
+                                            return <option key={i} value={t.id} className="textStyle">{t.name}</option>
+                                        })}
+                                    </select>
                                 </div>
                                 <div className="inputPosition">
                                     <label>城市：</label>
@@ -218,11 +237,23 @@ class Student extends Component {
                                 </div>
                                 <div className="inputPosition">
                                     <label>战区：</label>
-                                    <input type="text" id="modify_zone" className="form-control"/>
+                                    <select className="form-control" id="modify_zone"
+                                            onChange={this.selectTeamForZone.bind(this)}>
+                                        <option value="" className="textStyle">请选择</option>
+                                        {this.props.zones.map((z, i) => {
+                                            return <option key={i} className="textStyle"
+                                                           value={z.name}>{z.name}</option>
+                                        })}
+                                    </select>
                                 </div>
                                 <div className="inputPosition">
                                     <label>组号：</label>
-                                    <input type="text" id="modify_team" className="form-control"/>
+                                    <select className="form-control" id="modify_team">
+                                        <option value="" className="textStyle">请选择</option>
+                                        {this.props.teams.map((t, i) => {
+                                            return <option key={i} value={t.id} className="textStyle">{t.name}</option>
+                                        })}
+                                    </select>
                                 </div>
                                 <div className="inputPosition">
                                     <label>城市：</label>
