@@ -1,5 +1,4 @@
-module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
-    console.log("action",action);
+module.exports = (state = {allTask: [], isUpdate: "",isFind:"", students: []}, action)=> {
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
         state.isFind = "";
@@ -21,6 +20,10 @@ module.exports = (state = {allTask: [], isUpdate: "",isFind:""}, action)=> {
 
     }else if(action.type === "CHANGE_TASK_STATE"){
         state.isFind ="";
+        return Object.assign({}, state);
+    } else if(action.type === 'SELECT_STUDENT_FOR_ZONE_TEAM_BACK') {
+        state.students = action.students;
+
         return Object.assign({}, state);
     }
     else {

@@ -102,7 +102,7 @@ export default class WeekScore extends React.Component {
                     <select className="form-control" id="team">
                         <option value="" className="textStyle">请选择</option>
                         {this.props.teams.map((t, i) => {
-                            return <option key={i} value={t.id} className="textStyle">{t.name}</option>
+                            return <option key={i} value={t.name} className="textStyle">{t.name}</option>
                         })}
                     </select>
                 </div>

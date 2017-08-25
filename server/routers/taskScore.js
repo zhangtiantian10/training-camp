@@ -19,4 +19,8 @@ router.post('/filterTask', (req, res)=> {
     taskScore.filterTask(information, res);
 });
 
+router.post('/selectStudentForTeam', (req, res) => {
+    taskScore.selectStudents(res, req.body);
+})
+
 module.exports = router;
