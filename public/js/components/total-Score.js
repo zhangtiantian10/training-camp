@@ -37,7 +37,7 @@ export default class TotalScore extends React.Component {
             <div className="col-md-offset-2 tablePaddingTop">
                 <div className="col-md-3">
                     <select className="form-control textStyle" id="zone">
-                        <option value="" className="textStyle">所有</option>
+                        <option value="" className="textStyle">请选择战区</option>
                         {this.props.zones.map((z, i) => {
                             return <option key={i} className="textStyle" value={z.name}>{z.name}</option>
                         })}
@@ -45,7 +45,7 @@ export default class TotalScore extends React.Component {
                 </div>
                 <div className="col-md-3">
                     <select className="form-control textStyle" id="week">
-                        <option value="" className="textStyle">所有</option>
+                        <option value="" className="textStyle">请选择周</option>
                         {this.props.weeks.map((w, i) => {
                             return <option key={i} value={w.id} className="textStyle">
                                 {w.week_code}
