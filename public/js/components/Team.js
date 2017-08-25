@@ -41,6 +41,7 @@ export default class Team extends React.Component {
                 </div>
                 <div className="col-md-4">
                     <select className="form-control" id="zone">
+                        <option value="" className="textStyle">请选择战区</option>
                         {this.props.zones.map((z, i) => {
                             return <option key={i} value={z.name} className="textStyle">
                                     {z.name}

@@ -92,7 +92,7 @@ export default class WeekScore extends React.Component {
             <div className="col-md-offset-2 tablePaddingTop">
                 <div className="col-md-2">
                     <select className="form-control textStyle" id="zone" onChange={this.selectTeamForZone.bind(this)}>
-                        <option value="" className="textStyle">请选择</option>
+                        <option value="" className="textStyle">请选择战区</option>
                         {this.props.zones.map((z, i) => {
                             return <option key={i} className="textStyle" value={z.name}>{z.name}</option>
                         })}
@@ -100,7 +100,7 @@ export default class WeekScore extends React.Component {
                 </div>
                 <div className="col-md-2">
                     <select className="form-control" id="team">
-                        <option value="" className="textStyle">请选择</option>
+                        <option value="" className="textStyle">请选择小组</option>
                         {this.props.teams.map((t, i) => {
                             return <option key={i} value={t.name} className="textStyle">{t.name}</option>
                         })}
@@ -108,7 +108,7 @@ export default class WeekScore extends React.Component {
                 </div>
                 <div className="col-md-2">
                     <select className="form-control textStyle" id="week">
-                        <option value="" className="textStyle">请选择</option>
+                        <option value="" className="textStyle">请选择周</option>
                         {this.props.weeks.map((w, i) => {
                             return <option key={i} value={`${w.id}-${w.week_code}`} className="textStyle">
                                 {w.week_code}
