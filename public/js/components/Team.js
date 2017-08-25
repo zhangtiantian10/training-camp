@@ -13,7 +13,6 @@ export default class Team extends React.Component {
             alert('同一个战区小组名不能重复！');
             this.props.cancelState();
         } else if (nextProps.addSuccess === true) {
-            alert('添加成功！');
             this.props.getAllTeams();
         } else if (nextProps.addSuccess === false && nextProps.nameExist === false) {
             alert('添加失败！');

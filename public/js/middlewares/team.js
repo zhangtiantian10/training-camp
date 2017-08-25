@@ -10,7 +10,6 @@ module.exports = store => next => action => {
     } else if (action.type === 'GET_ALL_TEAMS') {
         request.get('/teams')
             .end((err, res) => {
-                console.log(res.body);
                 if (res.body === false) {
                     alert('获取信息失败!');
                     return;

@@ -12,7 +12,6 @@ export default class Week extends React.Component{
 
     componentWillUpdate(nextProps) {
         if(nextProps.addSuccess) {
-            alert('添加成功!');
             this.props.getAllWeeks();
         } else if(nextProps.addSuccess === false) {
             alert('添加失败!');

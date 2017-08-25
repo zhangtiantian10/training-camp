@@ -5,7 +5,6 @@ class Student extends Component {
 
     componentWillUpdate(nextProps) {
         if (nextProps.isSaved === true) {
-            alert('添加成功！');
             this.props.getAllStudent();
         } else if (nextProps.isSaved === false) {
             alert('添加失败！');
@@ -57,7 +56,6 @@ class Student extends Component {
     }
 
     insertValue(information) {
-        console.log(information);
         document.getElementById("modify_id").value = information.id;
         document.getElementById("modify_name").value = information.name;
         $("#modify_zone").val("");

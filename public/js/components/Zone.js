@@ -4,7 +4,6 @@ import Nav from '../containers/nav';
 export default class Zone extends React.Component {
     componentWillUpdate(nextProps) {
         if (nextProps.addSuccess === true) {
-            alert('添加成功！');
             this.props.getAllZones();
         } else if(nextProps.addSuccess === false) {
             alert('添加失败,战区名不能重复！');
