@@ -5,6 +5,7 @@ class Student extends Component {
 
     componentWillUpdate(nextProps) {
         if (nextProps.isSaved === true) {
+            alert('添加成功！');
             this.props.getAllStudent();
         } else if (nextProps.isSaved === false) {
             alert('添加失败！');
@@ -227,7 +228,7 @@ class Student extends Component {
                             <form className="form-inline">
                                 <div className="inputPosition">
                                     <label> I D：</label>
-                                    <input type="text" id="modify_id" className="form-control"/>
+                                    <input type="text" id="modify_id" className="form-control" disabled="disabled"/>
                                 </div>
                                 <div className="inputPosition">
                                     <label>姓名：</label>
