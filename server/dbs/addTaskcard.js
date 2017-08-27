@@ -23,6 +23,21 @@ function addTaskcard(res,data){
                     });
                 }
 
+                if(studentIds.length === 0) {
+                    connection.commit(function(err) {
+                        if (err) {
+                            return connection.rollback(function() {
+                                console.log(err);
+                                res.json(false);
+                                return;
+                            });
+                        }
+                        res.json(true);
+                    });
+
+                    return;
+                }
+
                 let insertTask = 'insert tasks_info (student_id, task_id) values';
 
                 insertTask += studentIds.map(s => {
