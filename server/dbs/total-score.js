@@ -13,6 +13,17 @@ function getAllScore(res) {
                     res.json(false);
                 });
             }
+            if(result.length === 0) {
+                connection.commit(function (err) {
+                    if (err) {
+                        return connection.rollback(function () {
+                            res.json(false);
+                        });
+                    }
+                    res.json({allScore: [], keyArr: []});
+                });
+                return;
+            }
             let keys = Object.keys(result[0]);
 
             let totalScore = result.map((r) => {
