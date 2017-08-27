@@ -41,7 +41,7 @@ export default class Nav extends React.Component{
                 <li><span className="colorA" onClick={this.zone.bind(this)}>战区</span></li>
                 <li><span className="colorA" onClick={this.team.bind(this)}>小组</span></li>
                 <li><span className="colorA" onClick={this.student.bind(this)}>学生信息</span></li>
-                <li><span className="colorA" onClick={this.week.bind(this)}>周表</span></li>
+                <li><span className="colorA" onClick={this.week.bind(this)}>周信息</span></li>
                 <li><span className="colorA" onClick={this.weekScore.bind(this)}>周成绩</span></li>
                 <li><span className="colorA" onClick={this.taskcard.bind(this)}>任务卡</span></li>
                 <li><span className="colorA" onClick={this.taskScore.bind(this)}>任务卡成绩</span></li>
