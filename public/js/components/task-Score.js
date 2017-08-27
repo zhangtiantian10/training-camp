@@ -5,14 +5,14 @@ class TaskScore extends Component {
 
     componentWillMount() {
         this.props.getAllTask();
-        this.props.getAllZone();
-        this.props.getAllTeam();
+        this.props.getAllZones();
     }
 
     componentWillUpdate(nextProps) {
         if (nextProps.isUpdate === true) {
             alert('添加成功！');
-            this.props.getAllTask();
+            this.props.changeState();
+            this.filterData();
         } else if (nextProps.isUpdate === false) {
             alert('添加失败！');
             this.props.changeState();
@@ -30,10 +30,13 @@ class TaskScore extends Component {
 
 
     filterData() {
-        const zone = $("#zone").val();
-        const team = $("#team").val();
-        const studentName = $("#keyValue").val();
-        this.props.filterData({zone, team, studentName});
+
+        const studentId = $("#student").val();
+        if(studentId === '') {
+            this.props.getAllTask();
+        } else {
+            this.props.filterData({studentId});
+        }
     }
 
 
@@ -69,35 +72,46 @@ class TaskScore extends Component {
         });
     }
 
+    selectTeamForZone() {
+        const zoneName = $('#zone').val();
+
+        this.props.selectTeam(zoneName);
+    }
+
+    selectStudents() {
+        const zone = $('#zone').val();
+        const team = $('#team').val();
+
+        this.props.selectStudents({zone, team});
+    }
 
     render() {
         return <div>
             <Nav/>
             <div className="col-md-offset-3 tablePaddingTop">
                 <div className="col-md-2">
-                    <select className="form-control textStyle" id="zone">
-                        {
-                            this.props.allZone.map((element,index)=>{
-                                return   <option value={element} className="textStyle" key={index}>
-                                  {element}
-                                </option>
-                            })
-                        }
+                    <select className="form-control textStyle" id="zone" onChange={this.selectTeamForZone.bind(this)}>
+                        <option value="" className="textStyle">请选择战区</option>
+                        {this.props.zones.map((z, i) => {
+                            return <option key={i} className="textStyle" value={z.name}>{z.name}</option>
+                        })}
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <select className="form-control" id="team">
-                        {
-                            this.props.allTeam.map((element,index)=>{
-                                return   <option value={element} className="textStyle" key={index}>
-                                    {element}
-                                </option>
-                            })
-                        }
+                    <select className="form-control" id="team" onChange={this.selectStudents.bind(this)}>
+                        <option value="" className="textStyle">请选择小组</option>
+                        {this.props.teams.map((t, i) => {
+                            return <option key={i} value={t.name} className="textStyle">{t.name}</option>
+                        })}
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <input type="text" className="form-control" id="keyValue" placeholder="请输入学生姓名"/>
+                    <select className="form-control" id="student">
+                        <option value="" className="textStyle">请选择学生</option>
+                        {this.props.students.map((s, i) => {
+                            return <option key={i} value={s.id} className="textStyle">{s.name}</option>
+                        })}
+                    </select>
                 </div>
                 <div className="col-md-2">
                     <button type="button" className="btn btn-default textStyle" onClick={this.filterData.bind(this)}>

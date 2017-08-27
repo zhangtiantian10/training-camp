@@ -7,8 +7,9 @@ const mapStateToProps = (state)=> {
         allTask: state.taskScore.allTask,
         isUpdate: state.taskScore.isUpdate,
         isFind: state.taskScore.isFind,
-        allZone: state.taskScore.allZone,
-        allTeam: state.taskScore.allTeam
+        teams: state.weekScore.teams,
+        zones: state.zone.zones,
+        students: state.taskScore.students
     }
 };
 
@@ -29,13 +30,16 @@ const mapDispatchToProps = (dispatch)=> {
         changeState: ()=> {
             dispatch({type: "CHANGE_STATE"});
         },
-        getAllZone: ()=> {
-            dispatch({type: "GET_ALL_ZONE"});
+        getAllZones: () => {
+            dispatch({type: 'GET_ALL_ZONES'});
         },
-        getAllTeam: ()=> {
-            dispatch({type: "GET_ALL_TEAM"});
+        selectTeam: (name) => {
+            dispatch({type: 'SELECT_TEAM', name});
+        },
+        selectStudents: (zoneAndTeam) => {
+            dispatch({type: 'SELECT_STUDENT_FOR_ZONE_TEAM', zoneAndTeam});
         }
-    }
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskScore);

@@ -6,7 +6,9 @@ const mapStateToProps = (state) => {
         weeks: state.week.weeks,
         students: state.weekScore.students,
         weekScores: state.weekScore.weekScores,
-        isUpdate: state.weekScore.isUpdate
+        isUpdate: state.weekScore.isUpdate,
+        teams: state.weekScore.teams,
+        zones: state.zone.zones
     };
 };
 
@@ -23,6 +25,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         modifyUpdateState: () => {
             dispatch({type: 'MODIFY_UPDATE_STATE'});
+        },
+        getAllZones: () => {
+            dispatch({type: 'GET_ALL_ZONES'});
+        },
+        selectTeam: (name) => {
+            dispatch({type: 'SELECT_TEAM', name});
         }
     };
 };

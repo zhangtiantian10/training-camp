@@ -1,7 +1,14 @@
 import request from "superagent";
 
 export default store => next => action => {
-    if (action.type === "GETALL_TASK") {
+
+    if (action.type === "SELECT_DATA") {
+        request.post('/selectTaskcard')
+            .send({data: action.data})
+            .end((err, res)=> {
+                next({type: "SELECT_DATA"})
+            })
+    } else if (action.type === "GETALL_TASK") {
         request.post('/getAllTask')
             .end((err, res)=> {
                 next({type: "GETALL_TASK", data: res.body.data})
@@ -18,16 +25,16 @@ export default store => next => action => {
             .end((err, res)=> {
                 next({type: "FILTER_TASK", fliterTask: res.body});
             })
-    } else if (action.type === "GET_ALL_ZONE") {
-        request.post('/getAllZone')
-            .end((err, res)=> {
-                next({type: "GET_ALL_ZONE", data: res.body.data});
+    } else if (action.type === 'SELECT_STUDENT_FOR_ZONE_TEAM') {
+        request.post('/selectStudentForTeam')
+            .send(action.zoneAndTeam)
+            .end((err, res) => {
+                if (err || res.body === false) {
+                    alert('查找学生失败');
+                    return;
+                }
+                next({type: 'SELECT_STUDENT_FOR_ZONE_TEAM_BACK', students: res.body});
             });
-    } else if (action.type === "GET_ALL_TEAM") {
-        request.post('/getAllTeam')
-            .end((err, res)=> {
-                next({type: "GET_ALL_TEAM", data: res.body.data});
-            })
     }
     else {
         next(action);

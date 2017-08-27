@@ -15,12 +15,9 @@ router.post('/filterTask', (req, res)=> {
     taskScore.filterTask(information, res);
 });
 
-router.post('/getAllZone', (req, res)=> {
-    taskScore.getAllZone(res);
-});
 
-router.post('/getAllTeam', (req, res)=> {
-    taskScore.getAllTeam(res);
-});
+router.post('/selectStudentForTeam', (req, res) => {
+    taskScore.selectStudents(res, req.body);
+})
 
 module.exports = router;

@@ -8,6 +8,10 @@ router.post('/studentScoreForWeek', (req, res) => {
 
 router.post('/weekScore', (req, res) => {
     Dao.updateWeekScores(res, req.body);
+});
+
+router.post('/teams', (req, res) => {
+    Dao.selectTeam(res, req.body.name);
 })
 
 module.exports = router;

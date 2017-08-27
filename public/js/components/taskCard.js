@@ -12,7 +12,6 @@ export default class TaskCard extends React.Component{
     }
     componentWillUpdate(nextProps){
         if(nextProps.addStatus === true){
-            alert("添加成功");
             this.props.getAllTaskcard();
             this.props.reset();
         }else if(nextProps.addStatus === false){

@@ -9,12 +9,13 @@ export default class WeekScore extends React.Component {
             totalScore: 0,
             weekScores: [],
             changeState: false,
-            students: []
+            students: [],
         };
     }
 
     componentDidMount() {
         this.props.getAllWeeks();
+        this.props.getAllZones();
     }
 
     componentWillUpdate(nextProps) {
@@ -41,6 +42,10 @@ export default class WeekScore extends React.Component {
         const zone = $("#zone").val();
         const team = $("#team").val();
         const week = $("#week").val();
+        if (!zone || !team || !week) {
+            alert('请选择正确的一项！');
+            return;
+        }
         this.state.ids = [];
         const weekSplit = week.split('-');
         const weekInfo = this.props.weeks.find(w => w.id === parseInt(weekSplit[0]));
@@ -49,6 +54,10 @@ export default class WeekScore extends React.Component {
 
     addWeekScore() {
         const week = $("#week").val();
+        if(!week) {
+            alert('请选择正确的一项！');
+            return;
+        }
         const weekScores = this.props.weekScores;
 
         this.props.updateWeekScores({weekScores, weekName: week.split('-')[1]});
@@ -58,7 +67,7 @@ export default class WeekScore extends React.Component {
         this.props.weekScores[i][`${string}`] = even.target.value;
         const weekScore = this.props.weekScores[i];
         const taskCard = weekScore.task_card;
-        const diary = weekScore.diary
+        const diary = weekScore.diary;
         const standingMeeting = weekScore.standing_meeting;
         const tribalConflict = weekScore.tribal_conflict;
         const physicalCompetition = weekScore.physical_competition;
@@ -71,29 +80,35 @@ export default class WeekScore extends React.Component {
         });
     }
 
+    selectTeamForZone() {
+        const zoneName = $('#zone').val();
+
+        this.props.selectTeam(zoneName);
+    }
+
     render() {
         return <div>
             <Nav/>
             <div className="col-md-offset-2 tablePaddingTop">
                 <div className="col-md-2">
-                    <select className="form-control textStyle" id="zone">
-                        <option value="001" className="textStyle">001战区</option>
-                        <option value="002" className="textStyle">002战区</option>
-                        <option value="003" className="textStyle">003战区</option>
-                        <option value="004" className="textStyle">004战区</option>
+                    <select className="form-control textStyle" id="zone" onChange={this.selectTeamForZone.bind(this)}>
+                        <option value="" className="textStyle">请选择战区</option>
+                        {this.props.zones.map((z, i) => {
+                            return <option key={i} className="textStyle" value={z.name}>{z.name}</option>
+                        })}
                     </select>
                 </div>
                 <div className="col-md-2">
                     <select className="form-control" id="team">
-                        <option value="1" className="textStyle">一组</option>
-                        <option value="2" className="textStyle">二组</option>
-                        <option value="3" className="textStyle">三组</option>
-                        <option value="4" className="textStyle">四组</option>
-                        <option value="5" className="textStyle">五组</option>
+                        <option value="" className="textStyle">请选择小组</option>
+                        {this.props.teams.map((t, i) => {
+                            return <option key={i} value={t.name} className="textStyle">{t.name}</option>
+                        })}
                     </select>
                 </div>
                 <div className="col-md-2">
                     <select className="form-control textStyle" id="week">
+                        <option value="" className="textStyle">请选择周</option>
                         {this.props.weeks.map((w, i) => {
                             return <option key={i} value={`${w.id}-${w.week_code}`} className="textStyle">
                                 {w.week_code}

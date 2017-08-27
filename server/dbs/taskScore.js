@@ -35,88 +35,42 @@ function modifyTask(information, res) {
 function filterTask(information, res) {
     const connection = require('./connection');
 
-    connection.beginTransaction((err) => {
+    let selectSql = `select a.id, a.student_id,a.task_id,DATE_FORMAT(finished_date,'%Y-%m-%d') finished_date,DATE_FORMAT(a.review_date,'%Y-%m-%d') review_date,a.review_grade,DATE_FORMAT(a.upgrade_date,'%Y-%m-%d') upgrade_date,a.upgrade_grade, b.name as student_name,c.name as task_name
+ from tasks_info a,student b,tasks_card c
+ where a.student_id=b.id and a.task_id=c.id and student_id=${information.studentId}`;
+    connection.query(selectSql, (err, data)=> {
+        if (err) {
+            return connection.rollback(function () {
+                console.log(err);
+                res.json({isFind: false});
+            });
+        }
+        if (data.length != 0) {
+            res.json({isFind: true, tasks: data});
+        } else {
+            res.json({isFind: false});
+        }
+    });
+}
+
+function selectStudents(res, info) {
+    const connection = require('./connection');
+
+    const selectSql = `select id, name from student where zone='${info.zone}' and team='${info.team}'`;
+
+    connection.query(selectSql, (err, result) => {
         if (err) {
             console.log(err);
-            res.json({isFind: false});
-            return;
+            res.json(false);
+        } else {
+            res.json(result);
         }
-
-        let filterSql = `select id from student where zone="${information.zone}" and team="${information.team}" and name="${information.studentName}"`;
-        connection.query(filterSql, (err, result)=> {
-            if (err) {
-                return connection.rollback(function () {
-                    console.log(err);
-                    res.json({isFind: false});
-                });
-            }
-
-            if (result.length === 0) {
-                res.json({isFind: false});
-            } else {
-
-                let studentId = result[0].id;
-                let selectSql = `select a.id, a.student_id,a.task_id,DATE_FORMAT(finished_date,'%Y-%m-%d') finished_date,DATE_FORMAT(a.review_date,'%Y-%m-%d') review_date,a.review_grade,DATE_FORMAT(a.upgrade_date,'%Y-%m-%d') upgrade_date,a.upgrade_grade, b.name as student_name,c.name as task_name
- from tasks_info a,student b,tasks_card c
- where a.student_id=b.id and a.task_id=c.id and student_id=${studentId}`;
-                connection.query(selectSql, (err, data)=> {
-                    if (err) {
-                        return connection.rollback(function () {
-                            console.log(err);
-                            res.json({isFind: false});
-                        });
-                    }
-                    if (data.length != 0) {
-                        res.json({isFind: true, tasks: data});
-                    } else {
-                        res.json({isFind: false});
-                    }
-                });
-            }
-        });
-    });
-}
-
-function getAllZone(res) {
-    const connection = require('./connection');
-    let selectSql = `select zone from student`;
-    connection.query(selectSql, (err, result)=> {
-        if (err) {
-            return connection.rollback(function () {
-                throw err;
-            });
-        }
-        let newArray = [];
-        for (let value of result) {
-            newArray.push(value.zone);
-        }
-        newArray = Array.from(new Set(newArray));
-        res.json({data: newArray});
-    });
-}
-
-function getAllTeam(res) {
-    const connection = require('./connection');
-    let selectSql = `select team from student`;
-    connection.query(selectSql, (err, result)=> {
-        if (err) {
-            return connection.rollback(function () {
-                throw err;
-            });
-        }
-        let newArray = [];
-        for (let value of result) {
-            newArray.push(value.team);
-        }
-        newArray = Array.from(new Set(newArray));
-        res.json({data: newArray});
-    });
+    })
 }
 
 module.exports = {
     selectAllTaskcard,
     modifyTask,
     filterTask,
-    getAllZone,
-    getAllTeam
+    selectStudents
 };

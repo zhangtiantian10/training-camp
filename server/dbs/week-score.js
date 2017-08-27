@@ -157,7 +157,24 @@ function updateWeekScores(res, weekInfo) {
     });
 }
 
+function selectTeam(res, name) {
+    const connection = require('./connection');
+
+    const selectSql = `select id, name from teams where zone_name='${name}'`;
+
+    connection.query(selectSql, (err, result) => {
+        if(err) {
+            console.log(err);
+            res.json(false);
+            return;
+        }
+
+        res.json(result);
+    })
+}
+
 module.exports = {
     getStudentScore,
-    updateWeekScores
+    updateWeekScores,
+    selectTeam
 };

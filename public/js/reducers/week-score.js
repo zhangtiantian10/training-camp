@@ -1,4 +1,4 @@
-module.exports = (state = {weekScores: [], students: [], isUpdate: ""}, action) => {
+module.exports = (state = {weekScores: [], students: [], isUpdate: "", teams: []}, action) => {
     if(action.type === 'SELECT_STUDENT_BACK') {
         state.students = action.data.students;
         state.weekScores = action.data.weekScores;
@@ -9,6 +9,10 @@ module.exports = (state = {weekScores: [], students: [], isUpdate: ""}, action) 
         return Object.assign({}, state);
     } else if(action.type === 'MODIFY_UPDATE_STATE') {
         state.isUpdate = "";
+
+        return Object.assign({}, state);
+    } else if (action.type === 'SELECT_TEAM_BACK') {
+        state.teams = action.teams;
 
         return Object.assign({}, state);
     }

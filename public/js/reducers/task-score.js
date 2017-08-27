@@ -1,4 +1,5 @@
-module.exports = (state = {allTask: [], isUpdate: "", isFind: "", allZone: [], allTeam: []}, action)=> {
+
+module.exports = (state = {allTask: [], isUpdate: "",isFind:"", students: []}, action)=> {
     if (action.type === "GETALL_TASK") {
         state.allTask = action.data;
         state.isFind = "";
@@ -23,6 +24,10 @@ module.exports = (state = {allTask: [], isUpdate: "", isFind: "", allZone: [], a
         return Object.assign({}, state);
     } else if (action.type === "GET_ALL_TEAM") {
         state.allTeam = action.data;
+        return Object.assign({}, state);
+    } else if(action.type === 'SELECT_STUDENT_FOR_ZONE_TEAM_BACK') {
+        state.students = action.students;
+
         return Object.assign({}, state);
     }
     else {
