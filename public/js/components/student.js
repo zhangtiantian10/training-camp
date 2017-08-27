@@ -93,8 +93,8 @@ class Student extends Component {
         document.getElementById("modify_gender").value = "";
     }
 
-    selectTeamForZone() {
-        const zoneName = $('#zone').val();
+    selectTeamForZone(id) {
+        const zoneName = $(`#${id}`).val();
 
         this.props.selectTeam(zoneName);
     }
@@ -169,7 +169,7 @@ class Student extends Component {
                                 <div className="inputPosition">
                                     <label>战区：</label>
                                     <select className="form-control" id="zone"
-                                            onChange={this.selectTeamForZone.bind(this)}>
+                                            onChange={this.selectTeamForZone.bind(this, 'zone')}>
                                         <option value="" className="textStyle">请选择</option>
                                         {this.props.zones.map((z, i) => {
                                             return <option key={i} className="textStyle"
@@ -236,7 +236,7 @@ class Student extends Component {
                                 <div className="inputPosition">
                                     <label>战区：</label>
                                     <select className="form-control" id="modify_zone"
-                                            onChange={this.selectTeamForZone.bind(this)}>
+                                            onChange={this.selectTeamForZone.bind(this, 'modify_zone')}>
                                         <option value="" className="textStyle">请选择</option>
                                         {this.props.zones.map((z, i) => {
                                             return <option key={i} className="textStyle"
